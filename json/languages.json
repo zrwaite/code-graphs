@@ -1,0 +1,23 @@
+{
+	"time": 492449.030401,
+	"languages": [
+		{"name": "TypeScript", "time": 184419, "percent": 37.4},
+		{"name": "C", "time": 95271, "percent": 19.3},
+		{"name": "JavaScript", "time": 83132, "percent": 16.9},
+		{"name": "PHP", "time": 46348, "percent": 9.4},
+		{"name": "JSON", "time": 29606, "percent": 6},
+		{"name": "Markdown", "time": 14405, "percent": 2.9},
+		{"name": "Python", "time": 11089, "percent": 2.3},
+		{"name": "HTML", "time": 7448, "percent": 1.5},
+		{"name": "Bash", "time": 4225, "percent": 0.9},
+		{"name": "Docker", "time": 3286, "percent": 0.7},
+		{"name": "SQL", "time": 2610, "percent": 0.5},
+		{"name": "Java", "time": 2498, "percent": 0.5},
+		{"name": "Git Config", "time": 2481, "percent": 0.5},
+		{"name": "Other", "time": 2361, "percent": 0.5},
+		{"name": "YAML", "time": 853, "percent": 0.2},
+		{"name": "Objective-C", "time": 838, "percent": 0.2},
+		{"name": "Rust", "time": 567, "percent": 0.1},
+		{"name": "Apache Config", "time": 401, "percent": 0.1}
+	]
+}
