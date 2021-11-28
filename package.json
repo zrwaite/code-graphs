@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "canvas": "^2.8.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "node-cron": "^3.0.0"

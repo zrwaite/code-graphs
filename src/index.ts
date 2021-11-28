@@ -1,4 +1,6 @@
 import writeLanguages from "./parseLanguages";
+import drawGraph from "./drawGraph";
 
-writeLanguages();
+// writeLanguages();
+drawGraph();
 // compressData();
