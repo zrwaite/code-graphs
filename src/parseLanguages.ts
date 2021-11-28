@@ -31,7 +31,8 @@ const getCodeData = async (token: string) => {
 	}
 }
 
-const writeLanguages = async () => {	
+const writeLanguages = async () => {
+	let ignoreLanguages = ["Markdown", "Other", "INI", "Text", "YAML", "Bash", "Git Config", "Objective-C", "TOML", "Apache Config"];	
 	const folderPath = path.join(__dirname, "../json/");
 	let fileName = "languages.json";
 	let filePath = folderPath+fileName;
@@ -51,8 +52,10 @@ const writeLanguages = async () => {
 				break;
 			} 
 			if (!found) {
-				languages.push({name:name, time:time, percent:0});
-				totalTime += time;
+				if (!ignoreLanguages.includes(name)){
+					languages.push({name:name, time:time, percent:0});
+					totalTime += time;
+				}
 			}
 			found = false;
 		});
