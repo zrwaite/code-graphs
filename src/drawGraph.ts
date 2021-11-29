@@ -27,7 +27,7 @@ const createSlice = (width: number, height: number, ctx: any, start: number, end
 }
 
 const getLanguages = async () => {
-	// await parseLanguages();
+	await parseLanguages();
 	const folderPath = path.join(__dirname, "../json/");
 	let fileName = "languages.json";
 	let filePath = folderPath+fileName;
