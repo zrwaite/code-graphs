@@ -1,0 +1,9 @@
+version: '3'
+services: 
+  server: 
+    env_file: "./.env"
+    build: ./
+    image: "zrwaite/codegraphs"
+    ports: 
+      - "6969:6969"
+    
