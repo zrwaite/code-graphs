@@ -5,5 +5,5 @@ services:
     build: ./
     image: "zrwaite/codegraphs"
     ports: 
-      - "6969:6969"
+      - "8001:8001"
     
