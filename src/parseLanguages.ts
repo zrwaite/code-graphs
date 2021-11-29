@@ -53,7 +53,22 @@ const writeLanguages = async () => {
 			} 
 			if (!found) {
 				if (!ignoreLanguages.includes(name)){
-					languages.push({name:name, time:time, percent:0});
+					let colour;
+					switch (name) {
+						case "TypeScript": colour = "#0099ff"; break;
+						case "JavaScript": colour = "#ecec13"; break;
+						case "C": colour = "#666666"; break;
+						case "JSON": colour = "#339933"; break;
+						case "PHP": colour = "#9999ff"; break;
+						case "Python": colour = "#0066cc"; break;
+						case "HTML": colour = "#ff471a"; break;
+						case "Docker": colour = "#1aa3ff"; break;
+						case "SQL": colour = "#e6b800"; break;
+						case "Java": colour = "#e60000"; break;
+						case "Rust": colour = "#ff5c33"; break;
+						default: colour = "white"; break;
+					}
+					languages.push({name:name, colour: colour, time:time, percent:0});
 					totalTime += time;
 				}
 			}
