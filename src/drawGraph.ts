@@ -47,7 +47,7 @@ const createPiGraph = async (ctx: any, languages: any[], width:number, height:nu
 
 const createLegend = async (ctx: any, languages: any[], start: number, width:number, height:number) => {
 	ctx.fillStyle = "lightgrey";
-	ctx.fillRect(start+ width/20, height/20, width-width/10, height-height/10);
+	ctx.fillRect(start+ width/20, height/20, width-width/10, height-height/7);
 	ctx.textBaseline = "top";
 	ctx.textAlign = 'center';
 
@@ -66,9 +66,12 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 		ctx.fillText(language.name, start+2*width/10, (i+4)*height/18);
 		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+4)*height/18);
 	}
-	languages.forEach((language) => {
-
-	})
+	ctx.font = 'bold 55pt Menlo';
+	ctx.fillStyle = "black";
+	ctx.textAlign = 'center';
+	let date = new Date().toLocaleDateString().toString();
+	ctx.fillText("Updated on: "+date, start+width/2, 18.4*height/20);
+	ctx.fillText("Charts made from scratch in nodejs", start+width/2, 19*height/20);
 }
 
 const createImage = async () => {
