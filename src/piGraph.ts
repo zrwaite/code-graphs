@@ -46,6 +46,8 @@ const createPiGraph = async (ctx: any, languages: any[], width:number, height:nu
 }
 
 const createLegend = async (ctx: any, languages: any[], start: number, width:number, height:number) => {
+	ctx.fillStyle = "white";
+	ctx.fillRect(start, 0, width, height); 
 	ctx.fillStyle = "lightgrey";
 	ctx.fillRect(start+ width/20, height/20, width-width/10, height-height/7);
 	ctx.textBaseline = "top";
@@ -75,19 +77,17 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 }
 
 const createImage = async () => {
-	let width = 4000;
+	let width = 4100;
 	let height = 2500;
 	let canvas = createCanvas(width, height);
 	let ctx = canvas.getContext('2d');
-	ctx.fillStyle = "white";
-	ctx.fillRect(0, 0, width, height); 
 	let languages = await getLanguages();
 	createPiGraph(ctx, languages, width*0.6, height)
 	createLegend(ctx, languages, width*0.6, width*0.4, height)
 	
 	const imageFolderPath = path.join(__dirname, "../images/");
 	let buffer = canvas.toBuffer("image/png");
-	let imageFileName = "test.png";
+	let imageFileName = "pigraph.png";
 	let imageFilePath = imageFolderPath+imageFileName;
 	fs.writeFileSync(imageFilePath, buffer);
 }
