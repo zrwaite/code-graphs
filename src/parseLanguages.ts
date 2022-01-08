@@ -32,7 +32,7 @@ const getCodeData = async (token: string) => {
 }
 
 const writeLanguages = async () => {
-	let ignoreLanguages = ["Markdown", "Other", "INI", "Text", "YAML", "Bash", "Git Config", "Objective-C", "TOML", "Apache Config"];	
+	let ignoreLanguages = ["Markdown", "Other", "INI", "Text", "XML", "YAML", "Bash", "Git Config", "Objective-C", "TOML", "Apache Config"];	
 	const folderPath = path.join(__dirname, "../json/");
 	let fileName = "languages.json";
 	let filePath = folderPath+fileName;
