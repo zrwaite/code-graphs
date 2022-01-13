@@ -66,6 +66,7 @@ const writeLanguages = async () => {
 						case "SQL": colour = "#e6b800"; break;
 						case "Java": colour = "#e60000"; break;
 						case "Rust": colour = "#ff5c33"; break;
+						case "C++": colour = "rgb(83, 136, 200)"; break;
 						default: colour = "white"; break;
 					}
 					languages.push({name:name, colour: colour, time:time, percent:0});

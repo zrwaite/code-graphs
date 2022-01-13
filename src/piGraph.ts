@@ -12,8 +12,8 @@ const createSlice = (width: number, height: number, ctx: any, start: number, end
 	let middle = {
 		x: width/2, y: height/2
 	}
-	let radius = Math.min(width, height)*0.45;
-	let offset = radius*0.04;
+	let radius = Math.min(width, height)*0.48;
+	let offset = 0; //radius*0.04;
 	let ox = Math.cos(median)*offset;
 	let oy = Math.sin(median)*offset;
 	ctx.fillStyle = colour;
@@ -38,7 +38,7 @@ const getLanguages = async () => {
 const createPiGraph = async (ctx: any, languages: any[], width:number, height:number) => {
 	let totalAngle = 0;
 	languages.forEach((language) => {
-		if (language.percent >= 0.5) {
+		if (language.percent >= 0.2) {
 			createSlice(width, height, ctx, totalAngle, language.percent, language.colour);
 			totalAngle += language.percent;
 		}
@@ -64,9 +64,9 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 	for (let i=0; i<languages.length; i++) {
 		let language = languages[i];
 		ctx.fillStyle = language.colour;
-		ctx.fillRect(start+width/10, (i+4.3)*height/18, height/50, height/50);
-		ctx.fillText(language.name, start+2*width/10, (i+4)*height/18);
-		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+4)*height/18);
+		ctx.fillRect(start+width/10, (i+4.5)*height/19.5, height/50, height/50);
+		ctx.fillText(language.name, start+2*width/10, (i+4.2)*height/19.5);
+		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+4.2)*height/19.5);
 	}
 	ctx.font = 'bold 55pt Menlo';
 	ctx.fillStyle = "black";
