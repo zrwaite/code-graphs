@@ -14,10 +14,15 @@ app.use(cors());
 
 app.get("*", (req:any, res:any) => {
 	const folderPath = path.join(__dirname, "../images/");
-	if (fs.existsSync(folderPath + req.url)) {
-		res.status(200).sendFile(req.url, {root: folderPath});
+	const filename = req.query.filename;
+	if (filename) {
+		if (fs.existsSync(folderPath + filename)) {
+			res.status(200).sendFile(filename, {root: folderPath});
+		} else {
+			res.status(404).json("404 File not found with filename: " + filename);
+		}
 	} else {
-		res.status(404).json("404 File not found");
+		res.status(400).json("You must provide a filename query");
 	}
 });
 
