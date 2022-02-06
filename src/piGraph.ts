@@ -53,12 +53,12 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 	ctx.textBaseline = "top";
 	ctx.textAlign = 'center';
 
-	ctx.font = 'bold 120pt Menlo';
+	ctx.font = 'bold 30pt Menlo';
 	ctx.fillStyle = "black";
 	ctx.fillText("Top Languages", start+width/2, height/15);
 	ctx.fillText("Since October", start+width/2, 2*height/15);
 
-	ctx.font = 'bold 85pt Menlo';
+	ctx.font = 'bold 21pt Menlo';
 	ctx.fillStyle = "black";
 	ctx.textAlign = 'left';
 	for (let i=0; i<languages.length; i++) {
@@ -68,17 +68,17 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 		ctx.fillText(language.name, start+2*width/10, (i+4.2)*height/19.5);
 		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+4.2)*height/19.5);
 	}
-	ctx.font = 'bold 55pt Menlo';
+	ctx.font = 'bold 14pt Menlo';
 	ctx.fillStyle = "black";
 	ctx.textAlign = 'center';
 	let date = new Date().toLocaleDateString().toString();
 	ctx.fillText("Updated on: "+date, start+width/2, 18.4*height/20);
-	ctx.fillText("Charts made from scratch in nodejs", start+width/2, 19*height/20);
+	ctx.fillText("Charts coded by Zac in nodejs", start+width/2, 19*height/20);
 }
 
 const createImage = async () => {
-	let width = 4100;
-	let height = 2500;
+	let width = 1000;
+	let height = 650;
 	let canvas = createCanvas(width, height);
 	let ctx = canvas.getContext('2d');
 	let languages = await getLanguages();

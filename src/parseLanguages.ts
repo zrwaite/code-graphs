@@ -32,7 +32,7 @@ const getCodeData = async (token: string) => {
 }
 
 const writeLanguages = async () => {
-	let ignoreLanguages = ["Markdown", "Other", "INI", "Text", "XML", "YAML", "Bash", "Git Config", "Objective-C", "TOML", "Apache Config"];	
+	let ignoreLanguages = ["JSON", "Markdown", "Other", "INI", "Text", "XML", "YAML", "Bash", "Git Config", "Objective-C", "TOML", "Apache Config", "GitIgnore file", "Shell Script"];	
 	const folderPath = path.join(__dirname, "../json/");
 	let fileName = "languages.json";
 	let filePath = folderPath+fileName;
@@ -58,6 +58,7 @@ const writeLanguages = async () => {
 						case "TypeScript": colour = "#0099ff"; break;
 						case "JavaScript": colour = "#ecec13"; break;
 						case "C": colour = "#666666"; break;
+						case "C#": colour = "#9332bf"; break;
 						case "JSON": colour = "#339933"; break;
 						case "PHP": colour = "#9999ff"; break;
 						case "Python": colour = "#0066cc"; break;
@@ -65,8 +66,14 @@ const writeLanguages = async () => {
 						case "Docker": colour = "#1aa3ff"; break;
 						case "SQL": colour = "#e6b800"; break;
 						case "Java": colour = "#e60000"; break;
+						case "Dart": colour = "rgb(23, 174, 255)"; break;
+						case "SCSS": colour = "rgb(201, 85, 146)"; break;
+						case "CSS": colour = "rgb(28, 49, 220)"; break;
 						case "Rust": colour = "#ff5c33"; break;
+						case "Racket": colour = "rgb(100, 13, 20)"; break;
+						case "Markdown": colour = "#333333"; break;
 						case "C++": colour = "rgb(83, 136, 200)"; break;
+						case "VHDL": colour = "grey"; break;
 						default: colour = "white"; break;
 					}
 					languages.push({name:name, colour: colour, time:time, percent:0});
