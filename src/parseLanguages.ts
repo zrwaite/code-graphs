@@ -74,6 +74,7 @@ const writeLanguages = async () => {
 						case "Markdown": colour = "#333333"; break;
 						case "C++": colour = "rgb(83, 136, 200)"; break;
 						case "VHDL": colour = "grey"; break;
+						case "Go": colour = "rgb(20, 156, 206)"; break;
 						default: colour = "white"; break;
 					}
 					languages.push({name:name, colour: colour, time:time, percent:0});

@@ -49,14 +49,14 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 	ctx.fillStyle = "white";
 	ctx.fillRect(start, 0, width, height); 
 	ctx.fillStyle = "lightgrey";
-	ctx.fillRect(start+ width/20, height/20, width-width/10, height-height/7);
+	ctx.fillRect(start+ width/20, height/40, width-width/10, height-height/8);
 	ctx.textBaseline = "top";
 	ctx.textAlign = 'center';
 
 	ctx.font = 'bold 30pt Menlo';
 	ctx.fillStyle = "black";
-	ctx.fillText("Top Languages", start+width/2, height/15);
-	ctx.fillText("Since October", start+width/2, 2*height/15);
+	ctx.fillText("Top Languages", start+width/2, height/25);
+	ctx.fillText("Since October", start+width/2, 2*height/20);
 
 	ctx.font = 'bold 21pt Menlo';
 	ctx.fillStyle = "black";
@@ -64,9 +64,9 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 	for (let i=0; i<languages.length; i++) {
 		let language = languages[i];
 		ctx.fillStyle = language.colour;
-		ctx.fillRect(start+width/10, (i+4.5)*height/19.5, height/50, height/50);
-		ctx.fillText(language.name, start+2*width/10, (i+4.2)*height/19.5);
-		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+4.2)*height/19.5);
+		ctx.fillRect(start+width/10, (i+4)*height/20, height/50, height/50);
+		ctx.fillText(language.name, start+2*width/10, (i+3.7)*height/20);
+		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+3.7)*height/20);
 	}
 	ctx.font = 'bold 14pt Menlo';
 	ctx.fillStyle = "black";
