@@ -32,7 +32,7 @@ const getCodeData = async (token: string) => {
 }
 
 const writeLanguages = async () => {
-	let ignoreLanguages = ["JSON", "Markdown", "Other", "INI", "Text", "XML", "YAML", "Bash", "Git Config", "Objective-C", "TOML", "Apache Config", "GitIgnore file", "Shell Script"];	
+	let ignoreLanguages = ["JSON", "Docker", "Markdown", "Other", "INI", "Text", "XML", "YAML", "Bash", "Git Config", "Objective-C", "TOML", "Apache Config", "GitIgnore file", "Shell Script"];	
 	const folderPath = path.join(__dirname, "../json/");
 	let fileName = "languages.json";
 	let filePath = folderPath+fileName;
@@ -88,7 +88,7 @@ const writeLanguages = async () => {
 	for (let i=0; i<languages.length; i++){
 		languages[i].percent = (Math.round((languages[i].time/totalTime)*1000)/10);
 		languages[i].time = Math.round(languages[i].time)
-		if (languages[i].percent == 0) languages.splice(i,languages.length-1);
+		if (languages[i].percent <= 0.1) languages.splice(i,languages.length-1);
 	}	
 	totalTime = Math.round(totalTime);
 	fs.writeFileSync(filePath, JSON.stringify({time: totalTime, languages: languages}));

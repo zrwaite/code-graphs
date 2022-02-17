@@ -64,9 +64,9 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 	for (let i=0; i<languages.length; i++) {
 		let language = languages[i];
 		ctx.fillStyle = language.colour;
-		ctx.fillRect(start+width/10, (i+4.2)*height/22, height/50, height/50);
-		ctx.fillText(language.name, start+2*width/10, (i+3.9)*height/22);
-		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+3.9)*height/22);
+		ctx.fillRect(start+width/10, (i+4)*height/20, height/50, height/50);
+		ctx.fillText(language.name, start+2*width/10, (i+3.7)*height/20);
+		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+3.7)*height/20);
 	}
 	ctx.font = 'bold 14pt Menlo';
 	ctx.fillStyle = "black";
