@@ -18,12 +18,12 @@ const createSlice = (width: number, height: number, ctx: any, start: number, end
 	let oy = Math.sin(median)*offset;
 	ctx.fillStyle = colour;
 
-    ctx.strokeStyle = "transparent";
+    ctx.strokeStyle = "white";
 	ctx.beginPath();
 	ctx.moveTo(middle.x + ox, middle.y + oy);
 	ctx.arc(middle.x+ox, middle.y+oy, radius, start+offset*0.0001, end-offset*0.0001);
 	ctx.lineTo(middle.x+ox, middle.y+oy);
-	ctx.lineWidth = 0; //offset*0.3;
+	ctx.lineWidth = 5; //offset*0.3;
 	ctx.stroke();
 	ctx.fill();
 }
@@ -53,24 +53,37 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 	ctx.textBaseline = "top";
 	ctx.textAlign = 'center';
 
-	ctx.font = 'bold 30pt Menlo';
+	ctx.font = 'bold 45pt Menlo';
 	ctx.fillStyle = "white";
 	ctx.fillText("Top Languages", start+width/2, height/30);
 	ctx.fillText("(By time spent)", start+width/2, 2*height/20);
-	ctx.font = 'bold 12pt Menlo';
+	ctx.font = 'bold 18pt Menlo';
 	ctx.fillText("Since October 2021*", start+width/2, 3.5*height/20);
 
-	ctx.font = 'bold 21pt Menlo';
+	ctx.font = 'bold 30pt Menlo';
 	ctx.fillStyle = "black";
 	ctx.textAlign = 'left';
 	for (let i=0; i<languages.length; i++) {
 		let language = languages[i];
 		ctx.fillStyle = language.colour;
-		ctx.fillRect(start+width/10, (i+4.5)*height/20, height/50, height/50);
+		ctx.fillRect(start+width/11, (i+4.5)*height/20, height/20, height/35);
+
+		ctx.shadowBlur=0;
+		ctx.fillStyle=language.colour;
 		ctx.fillText(language.name, start+2*width/10, (i+4.2)*height/20);
+		
+		ctx.fillStyle = "white";
+		ctx.shadowColor="white";
+		ctx.shadowBlur=0;
+		ctx.lineWidth=1;
+		ctx.strokeText(language.name, start+2*width/10, (i+4.2)*height/20);
+		
+		ctx.shadowBlur=0;
+
+		ctx.fillStyle = language.colour;
 		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+4.2)*height/20);
 	}
-	ctx.font = 'bold 14pt Menlo';
+	ctx.font = 'bold 20pt Menlo';
 	ctx.fillStyle = "white";
 	ctx.textAlign = 'center';
 	let date = new Date().toLocaleDateString().toString();
@@ -123,10 +136,10 @@ const createBackground = (ctx: canvasClass.CanvasRenderingContext2D, width: numb
 }
 
 const createImage = async () => {
-	let width = 1000;
-	let height = 650;
-	let borderRadius = 80;
-	let borderWidth = 12;
+	let width = 1500;
+	let height = 917;
+	let borderRadius = 20;
+	let borderWidth = 6;
 	let canvas = createCanvas(width, height);
 	let ctx = canvas.getContext('2d');
 	let languages = await getLanguages();
