@@ -9,7 +9,6 @@
     "dev": "nodemon --exec ts-node src/index.ts",
     "dev2": "ts-node src/index.ts",
     "start": "tsc && node src/index.js"
-
   },
   "keywords": [],
   "author": "",
@@ -24,7 +23,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "canvas": "^2.8.0",
+    "canvas": "^2.9.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
