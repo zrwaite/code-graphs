@@ -72,22 +72,16 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 		ctx.fillStyle=language.colour;
 		ctx.fillText(language.name, start+2*width/10, (i+4.2)*height/20);
 		
-		ctx.fillStyle = "white";
-		ctx.shadowColor="white";
-		ctx.shadowBlur=0;
-		ctx.lineWidth=1;
-		ctx.strokeText(language.name, start+2*width/10, (i+4.2)*height/20);
-		
 		ctx.shadowBlur=0;
 
 		ctx.fillStyle = language.colour;
 		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+4.2)*height/20);
 	}
-	ctx.font = 'bold 20pt Menlo';
+	ctx.font = 'bold 24pt Menlo';
 	ctx.fillStyle = "white";
 	ctx.textAlign = 'center';
 	let date = new Date().toLocaleDateString().toString();
-	ctx.fillText("Charts coded by Zac in nodejs", start+width/2, 18*height/20);
+	ctx.fillText("Charts coded by Zac in nodejs", start+width/2, 17.6*height/20);
 	ctx.fillText("Updated on: "+date, start+width/2, 18.6*height/20);
 }
 
