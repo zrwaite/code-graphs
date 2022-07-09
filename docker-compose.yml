@@ -3,6 +3,6 @@ services:
     server:
         env_file: './.env'
         build: ./
-        image: 'zrwaite/codegraphs:3.5'
+        image: 'zrwaite/codegraphs:3.6'
         ports:
             - '8001:8001'
