@@ -16,9 +16,9 @@ jobs:
             - uses: actions/checkout@v3
             - name: populate .env file
               run: |
-                  touch server/.env
-                  echo "${{ secrets.env_file }}" >> server/.env
-                  cat server/.env
+                  touch .env
+                  echo "${{ secrets.env_file }}" >> .env
+                  cat .env
             - name: docker login
               env:
                   DOCKER_USER: ${{secrets.DOCKER_USER}}
