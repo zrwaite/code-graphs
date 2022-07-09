@@ -1,8 +1,8 @@
 version: '3'
-services: 
-  server: 
-    env_file: "./.env"
-    build: ./
-    image: "zrwaite/codegraphs:3.4"
-    ports: 
-      - "8001:8001"
+services:
+    server:
+        env_file: './.env'
+        build: ./
+        image: 'zrwaite/codegraphs:3.5'
+        ports:
+            - '8001:8001'
