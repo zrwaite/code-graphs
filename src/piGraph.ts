@@ -60,22 +60,22 @@ const createLegend = async (ctx: any, languages: any[], start: number, width:num
 	ctx.font = 'bold 18pt Menlo';
 	ctx.fillText("Since October 2021*", start+width/2, 3.5*height/21);
 
-	ctx.font = 'bold 30pt Menlo';
+	ctx.font = 'bold 35pt Menlo';
 	ctx.fillStyle = "black";
 	ctx.textAlign = 'left';
 	for (let i=0; i<languages.length; i++) {
 		let language = languages[i];
 		ctx.fillStyle = language.colour;
-		ctx.fillRect(start+width/11, (i+4.5)*height/20, height/20, height/35);
+		ctx.fillRect(start+width/11, (i+4.2)*height/19, height/20, height/35);
 
 		ctx.shadowBlur=0;
 		ctx.fillStyle=language.colour;
-		ctx.fillText(language.name, start+2*width/10, (i+4.2)*height/20);
+		ctx.fillText(language.name, start+2*width/10, (i+3.9)*height/19);
 		
 		ctx.shadowBlur=0;
 
 		ctx.fillStyle = language.colour;
-		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+4.2)*height/20);
+		ctx.fillText(language.percent.toString() + "%", start+7*width/10, (i+3.9)*height/19);
 	}
 	ctx.font = 'bold 24pt Menlo';
 	ctx.fillStyle = "white";

@@ -32,7 +32,7 @@ const getCodeData = async (token: string) => {
 }
 
 const writeLanguages = async () => {
-	let ignoreLanguages = ['JSON', 'Docker', 'Markdown', 'Other', 'INI', 'Text', 'XML', 'YAML', 'Bash', 'Git Config', 'Objective-C', 'TOML', 'Apache Config', 'GitIgnore file', 'Shell Script']
+	let ignoreLanguages = ['JSON', 'Docker', 'Markdown', 'Other', 'INI', 'Text', 'XML', 'YAML', 'Bash', 'Git Config', 'Objective-C', 'TOML', 'Apache Config', 'GitIgnore file', 'Shell Script', 'GraphQL']
 	const folderPath = path.join(__dirname, '../json/')
 	let fileName = 'languages.json'
 	let filePath = folderPath + fileName
@@ -121,6 +121,12 @@ const writeLanguages = async () => {
 						case 'GraphQL':
 							colour = 'rgb(215, 0, 135)'
 							break
+						case 'Svelte': 
+							colour = 'rgb(235, 62, 39)'
+							break
+						case 'Ruby':
+							colour = 'rgb(217, 10, 0)'
+							break
 						default:
 							colour = 'white'
 							break
@@ -139,6 +145,7 @@ const writeLanguages = async () => {
 		if (languages[i].percent <= 0.1) languages.splice(i, languages.length - 1)
 	}
 	totalTime = Math.round(totalTime)
+	if (languages.length > 13) languages = languages.slice(0, 13)
 	fs.writeFileSync(filePath, JSON.stringify({ time: totalTime, languages: languages }))
 }
 
