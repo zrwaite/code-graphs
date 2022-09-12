@@ -6,4 +6,4 @@
 
 ### Here is a preview:
 
-<img src="http://insomnizac.xyz/graphs?filename=pigraph.png" />
+<img src="http://graphs.insomnizac.xyz/graphs?filename=pigraph.png" />
