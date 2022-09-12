@@ -13,7 +13,7 @@ func GetWakatimePiSVG(w http.ResponseWriter, r *http.Request) {
 	s := svg.New(w)
 	s.Start(1500, 917)
 	s.Roundrect(0, 0, 1500, 917, 20, 20, "fill:black;stroke:white;stroke-width:6")
-	// s.Circle(250, 250, 125, "fill:none;stroke:white")
 	CreatePiGraph(s, languages)
+	CreateLegend(s, languages)
 	s.End()
 }
