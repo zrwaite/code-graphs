@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/joho/godotenv"
 	"github.com/zrwaite/github-graphs/api"
 	"github.com/zrwaite/github-graphs/config"
 	"github.com/zrwaite/github-graphs/cron"
@@ -13,6 +14,7 @@ import (
 const port = "8009"
 
 func main() {
+	godotenv.Load(".env")
 	config.ConfigInit()
 	http.HandleFunc("/api/", api.APIHandler)
 	fmt.Println("Starting server at http://localhost:" + port)

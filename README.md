@@ -1,9 +1,9 @@
 # CodeGraphs
 
- ### I want to display graphs of my wakatime on my github page and website, so this will be an API I create to get up to date graphs!
+ ### I want to display graphs of my WakaTime on my GitHub page and website, so this will be an API I create to get up-to-date graphs!
 
-### Currently, I have a pi graph that resets every day with a cronjob pulling data from the wakatime api. 
+### Currently, I have a pi graph that resets every day with a cronjob pulling data from the WakaTime API. 
 
 ### Here is a preview:
 
-<img src="http://graphs.insomnizac.xyz/graphs?filename=pigraph.png" />
+<img src="http://graphs.insomnizac.xyz/graphs/api/wakatime/pi" />

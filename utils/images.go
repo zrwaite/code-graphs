@@ -5,5 +5,5 @@ import (
 )
 
 func OpenImage(filename string) (*os.File, error) {
-	return OpenFile("/images/" + filename)
+	return OpenFile("images/" + filename)
 }

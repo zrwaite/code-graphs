@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -11,6 +12,7 @@ var CONFIG Config
 
 func ConfigInit() {
 	initDirectory()
+	initEnv()
 }
 
 func initDirectory() {
@@ -21,6 +23,13 @@ func initDirectory() {
 	CONFIG.Directory = filepath.Dir(ex)
 	if strings.Contains(ex, "var/folders") {
 		fmt.Println("dev mode directory")
-		CONFIG.Directory = "/Users/zacharywaite/Coding/CodeGraphs/GoGraphs"
+		CONFIG.Directory = "/Users/zacharywaite/Coding/CodeGraphs/"
+	}
+}
+
+func initEnv() {
+	CONFIG.WakatimeToken = os.Getenv("WAKATIME_TOKEN")
+	if CONFIG.WakatimeToken == "" {
+		log.Fatal("Failed to load env variables")
 	}
 }

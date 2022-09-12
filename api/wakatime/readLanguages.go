@@ -10,7 +10,7 @@ import (
 )
 
 func ReadLanguages() models.Languages {
-	languagesJson, err := utils.OpenFile("/json/languages.json")
+	languagesJson, err := utils.OpenFile("json/languages.json")
 	if err != nil {
 		fmt.Println("Failed to read file: " + err.Error())
 	}

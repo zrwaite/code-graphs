@@ -3,9 +3,11 @@ package utils
 import (
 	"log"
 	"net/http"
+
+	"github.com/zrwaite/github-graphs/config"
 )
 
-func AuthorizedGetRequest(url string, bearerToken string) (*http.Response, error) {
+func WakatimeGetRequest(url string) (*http.Response, error) {
 	// Create a new request using http
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -13,7 +15,8 @@ func AuthorizedGetRequest(url string, bearerToken string) (*http.Response, error
 	}
 
 	// add authorization header to the req
-	req.Header.Add("Authorization", bearerToken)
+	req.Header.Add("Authorization", "Bearer "+config.CONFIG.WakatimeToken)
+	req.Header.Add("Host", "wakatime.com")
 
 	// Send req using http Client
 	client := &http.Client{}
