@@ -1,5 +1,9 @@
 package streak
 
+import (
+	"net/http"
+)
+
 func GetStyleSheet() string {
 	return `<style>
 	.ContributionCalendar-day {outline: rgba(255, 255, 255, 0.05);}
@@ -30,11 +34,22 @@ func GetBackground() string {
 	`
 }
 
-func CreateStreakGraph(username string) (string, error) {
-	html, err := GetStreak(username)
+func GetStreakSVG(w http.ResponseWriter, r *http.Request) {
+	username := r.URL.Query().Get("username")
+	if username == "" {
+		w.WriteHeader(400)
+		w.Write([]byte("username parameter is required"))
+		return
+	}
+
+	html, err := GetStreakData(username)
 	if err != nil {
-		return "", err
+		w.WriteHeader(400)
+		w.Write([]byte(err.Error()))
+		return
 	}
 	svg := GetSvg(html)
-	return svg, nil
+	w.WriteHeader(200)
+	streakGraphBytes := []byte(svg)
+	w.Write(streakGraphBytes)
 }

@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func GetStreak(username string) (string, error) {
+func GetStreakData(username string) (string, error) {
 	resp, err := http.Get("https://github.com/users/" + username + "/contributions")
 	if err != nil {
 		return "", err
