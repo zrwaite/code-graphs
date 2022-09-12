@@ -1,8 +1,9 @@
-FROM node:14
+FROM golang:1.18-alpine
 WORKDIR /app
-COPY ["./package.json", "./package-lock.json", "./"]
-RUN npm install
 COPY . .
-ENV PORT=8001
+RUN go mod download
+RUN go build -o ./codegraphs
+
 EXPOSE 8001
-CMD ["npm", "start"]
+
+CMD [ "./codegraphs" ]

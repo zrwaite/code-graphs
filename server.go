@@ -11,7 +11,7 @@ import (
 	"github.com/zrwaite/github-graphs/cron"
 )
 
-const port = "8009"
+const port = "8001"
 
 func main() {
 	godotenv.Load(".env")
