@@ -32,4 +32,7 @@ func initEnv() {
 	if CONFIG.WakatimeToken == "" {
 		log.Fatal("Failed to load env variables")
 	}
+	CONFIG.SendgridAPIKey = os.Getenv("SENDGRID_API_KEY")
+	CONFIG.ContactEmail = os.Getenv("CONTACT_EMAIL")
+	CONFIG.FromEmail = os.Getenv("FROM_EMAIL")
 }

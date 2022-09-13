@@ -1,6 +1,9 @@
 package config
 
 type Config struct {
-	Directory     string
-	WakatimeToken string
+	Directory      string
+	SendgridAPIKey string
+	ContactEmail   string
+	FromEmail      string
+	WakatimeToken  string
 }
