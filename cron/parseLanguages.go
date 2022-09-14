@@ -10,7 +10,7 @@ import (
 	"github.com/zrwaite/github-graphs/utils"
 )
 
-func getCodeData(attempt int) (models.WakatimeData, error) {
+func getCodeData() (models.WakatimeData, error) {
 	apiLink := "https://wakatime.com/api/v1/users/current/summaries?timeout=15&writes_only=true"
 	// startDate := time.Now().AddDate(-1, 0, 0).Format("2006-01-02")
 	startDate := "2021/10/12"
@@ -25,12 +25,9 @@ func getCodeData(attempt int) (models.WakatimeData, error) {
 		fmt.Println("Invalid token")
 		mail.ErrorMessage("Invalid token on code graphs")
 	} else if resp.StatusCode != 200 {
-		fmt.Println("Error getting data")
-		if attempt > 2 {
-			mail.ErrorMessage(fmt.Sprintf("Failed to get code data: %s", resp))
-			return data, err
-		}
-		return getCodeData(attempt + 1)
+		fmt.Println("Error getting data: " + time.Now().Format("2006-01-02 15:04:05"))
+		mail.ErrorMessage(fmt.Sprintf("Failed to get code data: %s", resp))
+		return data, nil
 	}
 	err = json.NewDecoder(resp.Body).Decode(&data)
 	if err != nil {
@@ -41,7 +38,7 @@ func getCodeData(attempt int) (models.WakatimeData, error) {
 
 func parseLanguages() {
 	ignoreLanguages := []string{"JSON", "Docker", "Markdown", "Other", "INI", "Text", "XML", "YAML", "Bash", "Git Config", "Objective-C", "TOML", "Apache Config", "GitIgnore file", "Shell Script", "GraphQL"}
-	data, err := getCodeData(0) //wakatime token
+	data, err := getCodeData() //wakatime token
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -86,7 +83,7 @@ func parseLanguages() {
 		Languages: languages,
 		TotalTime: totalTime,
 	})
-	fmt.Println("Languages saved: " + time.Now().Format("2006-01-02 15:04:05"))
+	fmt.Println("Languages saved! Total time: " + fmt.Sprint(totalTime) + " - " + time.Now().Format("2006-01-02 15:04:05"))
 }
 
 func writeLanguages(data models.Languages) {
