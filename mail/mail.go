@@ -27,3 +27,8 @@ func ErrorMessage(content string) (success bool) {
 	subject := "Error on graphs.insomnizac.xyz"
 	return SendMessage(config.CONFIG.ContactEmail, "Zac Waite", subject, content)
 }
+
+func StartupMessage() (success bool) {
+	subject := "Code graphs container started"
+	return SendMessage(config.CONFIG.ContactEmail, "Zac Waite", subject, "")
+}

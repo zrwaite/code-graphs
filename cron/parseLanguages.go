@@ -2,6 +2,7 @@ package cron
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 
@@ -26,8 +27,8 @@ func getCodeData() (models.WakatimeData, error) {
 		mail.ErrorMessage("Invalid token on code graphs")
 	} else if resp.StatusCode != 200 {
 		fmt.Println("Error getting data: " + time.Now().Format("2006-01-02 15:04:05"))
-		mail.ErrorMessage(fmt.Sprintf("Failed to get code data: %s", resp))
-		return data, nil
+		mail.ErrorMessage(fmt.Sprintf("Failed to get code data: \n\n\n%+v\n\n\n<img src=\"https://graphs.insomnizac.xyz/api/wakatime/pi\" />", resp))
+		return data, errors.New("failed to get code data")
 	}
 	err = json.NewDecoder(resp.Body).Decode(&data)
 	if err != nil {
