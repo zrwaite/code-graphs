@@ -3,7 +3,6 @@ package cron
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/zrwaite/github-graphs/mail"
@@ -29,7 +28,7 @@ func getCodeData(attempt int) (models.WakatimeData, error) {
 		fmt.Println("Error getting data")
 		if attempt > 2 {
 			mail.ErrorMessage(fmt.Sprintf("Failed to get code data: %s", resp))
-			log.Fatal("Failed to get code data multiple times")
+			return data, err
 		}
 		return getCodeData(attempt + 1)
 	}
