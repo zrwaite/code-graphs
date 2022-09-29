@@ -24,11 +24,11 @@ func SendMessage(toEmail string, toName string, subject string, content string) 
 }
 
 func ErrorMessage(content string) (success bool) {
-	subject := "Error on graphs.insomnizac.xyz"
+	subject := "Error on graphs.insomnizac.xyz v5.2"
 	return SendMessage(config.CONFIG.ContactEmail, "Zac Waite", subject, content)
 }
 
 func StartupMessage() (success bool) {
-	subject := "Code graphs container started"
+	subject := "Code graphs container started v5.2"
 	return SendMessage(config.CONFIG.ContactEmail, "Zac Waite", subject, "")
 }
