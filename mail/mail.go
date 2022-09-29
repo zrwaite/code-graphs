@@ -14,7 +14,7 @@ func SendMessage(toEmail string, toName string, subject string, content string) 
 	plainTextContent := content
 	htmlContent := content
 	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
-	client := sendgrid.NewSendClient(config.CONFIG.SendgridAPIKey)
+	client := sendgrid.NewSendClient(config.CONFIG.SendGridAPIKey)
 	_, err := client.Send(message)
 	if err != nil {
 		log.Println(err)

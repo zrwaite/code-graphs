@@ -12,11 +12,7 @@ import (
 )
 
 func getCodeData() (models.WakatimeData, error) {
-	apiLink := "https://wakatime.com/api/v1/users/current/summaries?timeout=15&writes_only=true"
-	// startDate := time.Now().AddDate(-1, 0, 0).Format("2006-01-02")
-	startDate := "2021/10/12"
-	date := time.Now().Format("2006-01-02")
-	apiLink += "&start=" + startDate + "&end=" + date
+	apiLink := "https://wakatime.com/api/v1/users/current/stats/last_year?timeout=15&writes_only=true"
 	resp, err := utils.WakatimeGetRequest(apiLink)
 	if err != nil {
 		fmt.Println(err)
@@ -44,47 +40,44 @@ func parseLanguages() {
 		fmt.Println(err)
 		return
 	}
-	totalTime := 0
-	foundLanguages := []models.Language{}
-	for _, datapoint := range data.Data {
-		for _, language := range datapoint.Languages {
-			found := false
-			time := int(language.TotalSeconds)
-			for i := 0; i < len(foundLanguages); i++ {
-				if language.Name != foundLanguages[i].Name {
-					continue
-				}
-				foundLanguages[i].Time += time
-				totalTime += time
-				found = true
-				break
-			}
-			if !found {
-				if !utils.Contains(ignoreLanguages, language.Name) {
-					foundLanguages = append(foundLanguages, models.Language{
-						Name:   language.Name,
-						Time:   time,
-						Colour: getColour(language.Name),
-					})
-				}
-			}
-		}
+	languages := []models.Language{}
+	other := models.Language{
+		Name:         "Other",
+		TotalSeconds: 0,
+		Colour:       "white",
+		Percent:      0,
 	}
-	languages := utils.SortLanguagesByTime(foundLanguages)
-	if len(languages) > 13 {
-		// for i := 13; i < len(languages); i++ {
-		// 	totalTime -= languages[i].Time
-		// }
-		languages = languages[:13]
+	totalPercent := 100.0
+	totalSeconds := data.Data.TotalSeconds
+	for _, language := range data.Data.Languages {
+		if utils.Contains(ignoreLanguages, language.Name) {
+			totalPercent -= language.Percent
+			totalSeconds -= language.TotalSeconds
+			continue
+		}
+		if len(languages) > 11 {
+			other.Percent += language.Percent
+			other.TotalSeconds += language.TotalSeconds
+			continue
+		}
+		languages = append(languages, models.Language{
+			Name:         language.Name,
+			Colour:       getColour(language.Name),
+			TotalSeconds: language.TotalSeconds,
+			Percent:      language.Percent,
+		})
+	}
+	if other.TotalSeconds > 0 {
+		languages = append(languages, other)
 	}
 	for i := 0; i < len(languages); i++ {
-		languages[i].Percent = 100 * float64(languages[i].Time) / float64(totalTime)
+		languages[i].Percent = languages[i].Percent / totalPercent * 100
 	}
 	writeLanguages(models.Languages{
-		Languages: languages,
-		TotalTime: totalTime,
+		Languages:    languages,
+		TotalSeconds: data.Data.TotalSeconds,
 	})
-	fmt.Println("Languages saved! Total time: " + fmt.Sprint(totalTime) + " - " + time.Now().Format("2006-01-02 15:04:05"))
+	fmt.Println("Languages saved! Total time: " + fmt.Sprint(int(data.Data.TotalSeconds)) + " - " + time.Now().Format("2006-01-02 15:04:05"))
 }
 
 func writeLanguages(data models.Languages) {

@@ -28,11 +28,15 @@ func initDirectory() {
 }
 
 func initEnv() {
-	CONFIG.WakatimeToken = os.Getenv("WAKATIME_TOKEN")
-	if CONFIG.WakatimeToken == "" {
+	CONFIG.WakatimeAccessToken = os.Getenv("WAKATIME_ACCESS_TOKEN")
+	if CONFIG.WakatimeAccessToken == "" {
 		log.Fatal("Failed to load env variables")
 	}
-	CONFIG.SendgridAPIKey = os.Getenv("SENDGRID_API_KEY")
+	CONFIG.WakatimeRefreshToken = os.Getenv("WAKATIME_REFRESH_TOKEN")
+	CONFIG.RedirectURI = os.Getenv("REDIRECT_URI")
+	CONFIG.WakatimeClientId = os.Getenv("WAKATIME_CLIENT_ID")
+	CONFIG.WakatimeClientSecret = os.Getenv("WAKATIME_CLIENT_SECRET")
+	CONFIG.SendGridAPIKey = os.Getenv("SENDGRID_API_KEY")
 	CONFIG.ContactEmail = os.Getenv("CONTACT_EMAIL")
 	CONFIG.FromEmail = os.Getenv("FROM_EMAIL")
 }

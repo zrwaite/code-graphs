@@ -23,6 +23,6 @@ func GenericSort[V SortTrait](list []V, lt func(a, b V) bool) []V {
 
 func SortLanguagesByTime(languages []models.Language) []models.Language {
 	return GenericSort(languages, func(a, b models.Language) bool {
-		return a.Time < b.Time
+		return a.TotalSeconds < b.TotalSeconds
 	})
 }
