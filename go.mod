@@ -12,6 +12,7 @@ require (
 require github.com/sendgrid/rest v2.6.9+incompatible // indirect
 
 require (
+	github.com/davecgh/go-spew v1.1.1
 	github.com/joho/godotenv v1.4.0
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/sendgrid/sendgrid-go v3.11.1+incompatible

@@ -19,8 +19,13 @@ func getCodeData() (models.WakatimeData, error) {
 	}
 	var data models.WakatimeData
 	if resp.StatusCode == 401 {
-		fmt.Println("Invalid token")
-		mail.ErrorMessage("Invalid token on code graphs")
+		fmt.Println("Refreshing token - " + time.Now().Format("2006-01-02 15:04:05"))
+		err := utils.RefreshWakatimeToken()
+		if err != nil {
+			fmt.Println(err)
+			return data, err
+		}
+		return getCodeData()
 	} else if resp.StatusCode != 200 {
 		fmt.Println("Error getting data: " + time.Now().Format("2006-01-02 15:04:05"))
 		mail.ErrorMessage(fmt.Sprintf("Failed to get code data: \n\n\n%+v\n\n\n<img src=\"https://graphs.insomnizac.xyz/api/wakatime/pi\" />", resp))

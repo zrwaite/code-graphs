@@ -28,3 +28,7 @@ type WakatimeData struct {
 		TotalSeconds     float64    `json:"total_seconds"`
 	} `json:"data"`
 }
+
+type WakaTimeRefreshResponse struct {
+	AccessToken string `json:"access_token"`
+}
