@@ -30,7 +30,13 @@ func CreateSlice(s *svg.SVG, start float64, size float64, colour string) {
 
 func CreatePiGraph(s *svg.SVG, languages models.Languages) {
 	totalAngle := 0.0
-	for i, language := range languages.Languages {
+	sliceLanguages := append(languages.Languages, models.Language{
+		Name:         "Other",
+		Colour:       "white",
+		TotalSeconds: languages.Other.TotalSeconds,
+		Percent:      languages.Other.Percent,
+	})
+	for i, language := range sliceLanguages {
 		if i == 0 && language.Percent < 45 {
 			s.Circle(480, 460, 400, "fill:none;stroke:white;stroke-width:5")
 		}

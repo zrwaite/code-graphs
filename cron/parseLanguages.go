@@ -33,59 +33,22 @@ func getCodeData() (models.WakatimeData, error) {
 	return data, nil
 }
 
-func parseLanguages() {
-	ignoreLanguages := []string{"JSON", "Docker", "Markdown", "Other", "INI", "Text", "XML", "YAML", "Bash", "Git Config", "Objective-C", "TOML", "Apache Config", "GitIgnore file", "Shell Script", "GraphQL"}
+func parseCodeData() {
 	data, err := getCodeData() //wakatime token
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	languages := []models.Language{}
-	other := models.Language{
-		Name:         "Other",
-		TotalSeconds: 0,
-		Colour:       "white",
-		Percent:      0,
-	}
-	totalPercent := 100.0
-	totalSeconds := data.Data.TotalSeconds
-	for _, language := range data.Data.Languages {
-		if utils.Contains(ignoreLanguages, language.Name) {
-			totalPercent -= language.Percent
-			totalSeconds -= language.TotalSeconds
-			continue
-		}
-		if len(languages) > 11 {
-			other.Percent += language.Percent
-			other.TotalSeconds += language.TotalSeconds
-			continue
-		}
-		languages = append(languages, models.Language{
-			Name:         language.Name,
-			Colour:       getColour(language.Name),
-			TotalSeconds: language.TotalSeconds,
-			Percent:      language.Percent,
-		})
-	}
-	if other.TotalSeconds > 0 {
-		languages = append(languages, other)
-	}
-	for i := 0; i < len(languages); i++ {
-		languages[i].Percent = languages[i].Percent / totalPercent * 100
-	}
-	writeLanguages(models.Languages{
-		Languages:    languages,
-		TotalSeconds: data.Data.TotalSeconds,
-	})
+	writeCodeData(data)
 	fmt.Println("Languages saved! Total time: " + fmt.Sprint(int(data.Data.TotalSeconds)) + " - " + time.Now().Format("2006-01-02 15:04:05"))
 }
 
-func writeLanguages(data models.Languages) {
+func writeCodeData(data models.WakatimeData) {
 	content, err := json.Marshal(data)
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = utils.WriteFile("json/languages.json", content)
+	err = utils.WriteFile("json/data.json", content)
 	if err != nil {
 		fmt.Println(err)
 	}

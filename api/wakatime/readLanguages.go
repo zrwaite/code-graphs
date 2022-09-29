@@ -9,17 +9,17 @@ import (
 	"github.com/zrwaite/github-graphs/utils"
 )
 
-func ReadLanguages() models.Languages {
-	languagesJson, err := utils.OpenFile("json/languages.json")
+func ReadCodeData() models.WakatimeData {
+	codeDataJson, err := utils.OpenFile("json/data.json")
 	if err != nil {
 		fmt.Println("Failed to read file: " + err.Error())
 	}
-	defer languagesJson.Close()
-	languagesBytes, _ := io.ReadAll(languagesJson)
-	languages := models.Languages{}
-	err = json.Unmarshal(languagesBytes, &languages)
+	defer codeDataJson.Close()
+	codeDataBytes, _ := io.ReadAll(codeDataJson)
+	codeData := models.WakatimeData{}
+	err = json.Unmarshal(codeDataBytes, &codeData)
 	if err != nil {
 		fmt.Println("Failed to parse json" + err.Error())
 	}
-	return languages
+	return codeData
 }

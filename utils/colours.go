@@ -1,6 +1,6 @@
-package cron
+package utils
 
-func getColour(language string) string {
+func GetColour(language string) string {
 	switch language {
 	case "TypeScript":
 		return "#0099ff"
@@ -51,6 +51,6 @@ func getColour(language string) string {
 	case "Ruby":
 		return "rgb(217, 10, 0)"
 	default:
-		return "white"
+		return "lightgrey"
 	}
 }

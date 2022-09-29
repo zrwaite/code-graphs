@@ -9,7 +9,7 @@ import (
 func RunCronJobs() {
 	s := gocron.NewScheduler(time.UTC)
 	s.Every(1).Hours().Do(func() {
-		parseLanguages()
+		parseCodeData()
 	})
 	s.StartBlocking()
 }
