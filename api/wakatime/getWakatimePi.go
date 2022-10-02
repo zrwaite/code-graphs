@@ -9,6 +9,8 @@ import (
 
 func GetWakatimePiSVG(w http.ResponseWriter, r *http.Request) {
 	codeData := ReadCodeData()
+	w.Header().Set("Last-Modified", codeData.LastModified)
+	w.Header().Set("Expires", codeData.Expires)
 	ignoreString := r.URL.Query().Get("ignore")
 	var ignoreLanguages []string
 	if ignoreString == "" {

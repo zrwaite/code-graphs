@@ -10,7 +10,7 @@ import (
 
 func APIHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "image/svg+xml")
-	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Set("Cache-Control", "public, max-age=3600")
 	if r.Method != "GET" {
 		w.WriteHeader(400)
 		json.NewEncoder(w).Encode("Method " + r.Method + " is not supported")

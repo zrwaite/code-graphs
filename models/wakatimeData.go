@@ -27,6 +27,8 @@ type WakatimeData struct {
 		Username         string     `json:"username"`
 		TotalSeconds     float64    `json:"total_seconds"`
 	} `json:"data"`
+	Expires      string `json:"expires"`
+	LastModified string `json:"last_modified"`
 }
 
 type WakaTimeRefreshResponse struct {

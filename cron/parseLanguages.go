@@ -35,6 +35,8 @@ func getCodeData() (models.WakatimeData, error) {
 	if err != nil {
 		return data, err
 	}
+	data.Expires = time.Now().Add(time.Hour * 1).Format(time.RFC1123)
+	data.LastModified = time.Now().Format(time.RFC1123)
 	return data, nil
 }
 
