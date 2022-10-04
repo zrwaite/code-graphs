@@ -50,6 +50,8 @@ func GetColour(language string) string {
 		return "rgb(235, 62, 39)"
 	case "Ruby":
 		return "rgb(217, 10, 0)"
+	case "Scala":
+		return "rgb(153, 0, 0)"
 	default:
 		return "lightgrey"
 	}
