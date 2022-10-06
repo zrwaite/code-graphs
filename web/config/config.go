@@ -23,7 +23,7 @@ func initDirectory() {
 	CONFIG.Directory = filepath.Dir(ex) + "/"
 	if strings.Contains(ex, "var/folders") {
 		fmt.Println("dev mode directory")
-		CONFIG.Directory = "/Users/zacharywaite/Coding/CodeGraphs/"
+		CONFIG.Directory = "/Users/zacharywaite/Coding/CodeGraphs/web/"
 	}
 }
 
