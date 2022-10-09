@@ -1,7 +1,7 @@
 version: '3'
 services:
     web:
-        env_file: './web/.env'
+        env_file: './.env'
         build: web
         image: 'zrwaite/codegraphs_web:2.0.0'
         ports:
@@ -15,7 +15,7 @@ services:
         ports:
             - '8002:6379'
         command: "redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}"
-        volumes: 
+        volumes:
             - redis:/data
 volumes:
     redis:

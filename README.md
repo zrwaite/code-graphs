@@ -6,8 +6,8 @@
 ## `/api/wakatime/pi`:
 - Pi graph that updates every hour with a cronjob pulling data from the WakaTime API
 
-<a href="https://graphs.insomnizac.xyz/api/wakatime/pi" target="_blank">
-<img src="https://graphs.insomnizac.xyz/api/wakatime/pi?test=test" />
+<a href="https://graphs.insomnizac.xyz/api/wakatime" target="_blank">
+<img src="https://graphs.insomnizac.xyz/api/wakatime?addDefaultIgnore=true&ignore=george&username=Insomnizac" />
 </a>
 
 ## `/api/streak?username={username}`:
