@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/zrwaite/github-graphs/mail"
 	"github.com/zrwaite/github-graphs/models"
 	"github.com/zrwaite/github-graphs/utils"
+	"github.com/zrwaite/github-graphs/utils/mail"
 )
 
 func getCodeData() (models.WakatimeData, error) {

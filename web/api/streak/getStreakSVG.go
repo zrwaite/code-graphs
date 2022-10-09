@@ -1,8 +1,6 @@
 package streak
 
-import (
-	"net/http"
-)
+import "github.com/gin-gonic/gin"
 
 func GetStyleSheet() string {
 	return `<style>
@@ -34,22 +32,22 @@ func GetBackground() string {
 	`
 }
 
-func GetStreakSVG(w http.ResponseWriter, r *http.Request) {
-	username := r.URL.Query().Get("username")
+func GetStreakSVG(c *gin.Context) {
+	username := c.Query("username")
 	if username == "" {
-		w.WriteHeader(400)
-		w.Write([]byte("username parameter is required"))
+		c.String(400, "Username is required")
 		return
 	}
 
 	html, err := GetStreakData(username)
 	if err != nil {
-		w.WriteHeader(400)
-		w.Write([]byte(err.Error()))
+		c.String(400, err.Error())
 		return
 	}
 	svg := GetSvg(html)
-	w.WriteHeader(200)
 	streakGraphBytes := []byte(svg)
-	w.Write(streakGraphBytes)
+
+	c.Header("Content-Type", "image/svg+xml")
+	c.Header("Cache-Control", "public, max-age=3600")
+	c.Data(200, "image/svg+xml", streakGraphBytes)
 }

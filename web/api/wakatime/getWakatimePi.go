@@ -1,18 +1,20 @@
 package wakatime
 
 import (
-	"net/http"
 	"strings"
 
 	svg "github.com/ajstarks/svgo"
+	"github.com/gin-gonic/gin"
 )
 
-func GetWakatimePiSVG(w http.ResponseWriter, r *http.Request) {
+func GetWakatimePiSVG(c *gin.Context) {
 	codeData := ReadCodeData()
-	w.Header().Set("Last-Modified", codeData.LastModified)
-	w.Header().Set("Expires", codeData.Expires)
-	ignoreString := r.URL.Query().Get("ignore")
-	addDefaultIgnore := r.URL.Query().Get("addDefaultIgnore")
+	c.Header("Last-Modified", codeData.LastModified)
+	c.Header("Expires", codeData.Expires)
+
+	ignoreString := c.Query("ignore")
+	addDefaultIgnore := c.Query("addDefaultIgnore")
+
 	ignoreLanguages := []string{}
 	if ignoreString != "" {
 		ignoreLanguages = strings.Split(ignoreString, ",")
@@ -22,7 +24,10 @@ func GetWakatimePiSVG(w http.ResponseWriter, r *http.Request) {
 		ignoreLanguages = append(ignoreLanguages, defaultIgnoreLanguages...)
 	}
 	languages := parseLanguages(codeData, ignoreLanguages)
-	s := svg.New(w)
+
+	c.Header("Content-Type", "image/svg+xml")
+	c.Header("Cache-Control", "public, max-age=3600")
+	s := svg.New(c.Writer)
 	s.Start(1500, 917)
 	s.Roundrect(0, 0, 1500, 917, 20, 20, "fill:black;stroke:white;stroke-width:6")
 	CreatePiGraph(s, languages)

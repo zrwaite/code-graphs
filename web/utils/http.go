@@ -10,8 +10,8 @@ import (
 	"strings"
 
 	"github.com/zrwaite/github-graphs/config"
-	"github.com/zrwaite/github-graphs/mail"
 	"github.com/zrwaite/github-graphs/models"
+	"github.com/zrwaite/github-graphs/utils/mail"
 )
 
 func WakatimeGetRequest(url string) (*http.Response, error) {
