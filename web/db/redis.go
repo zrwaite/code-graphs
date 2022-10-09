@@ -16,7 +16,7 @@ import (
 var Cache *redis.Client
 
 func ConnectToRedis() {
-	addr := "redis:6379"
+	addr := "codegraphs_redis:6379"
 	if config.CONFIG.Dev {
 		addr = "localhost:6379"
 	}
