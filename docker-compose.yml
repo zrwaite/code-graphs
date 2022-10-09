@@ -3,20 +3,20 @@ services:
     web:
         env_file: './.env'
         build: web
-        image: 'zrwaite/codegraphs_web:3.0.0'
+        image: 'zrwaite/codegraphs_web:3.0.1'
         ports:
             - '8001:8001'
-    redis:
-        build: 'redis'
-        image: 'zrwaite/codegraphs_redis:1'
-        labels:
-            com.datadoghq.ad.logs: '[{"source": "redis", "service": "redis"}]'
-        restart: 'always'
-        ports:
-            - '8002:6379'
-        command: "redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}"
-        volumes:
-            - redis:/data
+    # redis:
+    #     build: 'redis'
+    #     image: 'zrwaite/codegraphs_redis:1'
+    #     labels:
+    #         com.datadoghq.ad.logs: '[{"source": "redis", "service": "redis"}]'
+    #     restart: 'always'
+    #     ports:
+    #         - '8002:6380'
+    #     command: "redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}"
+    #     volumes:
+    #         - redis:/data
 volumes:
     redis:
         driver: local
