@@ -31,6 +31,20 @@ type WakatimeData struct {
 	LastModified string `json:"last_modified"`
 }
 
-type WakaTimeRefreshResponse struct {
-	AccessToken string `json:"access_token"`
+type WakaTimeTokenResponse struct {
+	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+}
+
+type WakaTimeUserResponse struct {
+	Data struct {
+		Username string `json:"username"`
+	} `json:"data"`
+}
+
+type User struct {
+	Username     string `bson:"username"`
+	AccessToken  string `bson:"access_token"`
+	RefreshToken string `bson:"refresh_token"`
+	Verified     bool   `bson:"verified"`
 }

@@ -6,9 +6,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/zrwaite/github-graphs/api"
+	"github.com/zrwaite/github-graphs/api/oauth"
+	"github.com/zrwaite/github-graphs/api/streak"
+	"github.com/zrwaite/github-graphs/api/wakatime"
 	"github.com/zrwaite/github-graphs/client/controllers"
 	"github.com/zrwaite/github-graphs/config"
+	"github.com/zrwaite/github-graphs/cron"
+	"github.com/zrwaite/github-graphs/db"
 )
 
 // var db = make(map[string]string)
@@ -17,14 +21,16 @@ const port = "8001"
 
 func main() {
 	r := setupRouter()
+	fmt.Println("Starting server at http://localhost:" + port)
 	r.Run(":" + port)
 }
 
 func setupRouter() *gin.Engine {
 	godotenv.Load(".env")
 	config.ConfigInit()
-	fmt.Println("Starting server at http://localhost:" + port)
-	// go cron.RunCronJobs()
+	db.ConnectToMongoDB()
+	// db.InitializeDatabase()
+	go cron.RunCronJobs()
 	// mail.StartupMessage()
 
 	r := gin.Default()
@@ -35,9 +41,11 @@ func setupRouter() *gin.Engine {
 	})
 
 	r.GET("/", controllers.HomeController)
-	// r.GET("/styles", http.FileServer(http.Dir("../client")))
-	r.Static("/styles", "./static/css")
-	r.GET("/api/:type", api.NewAPIHandler)
+	r.Static("/styles", "./client/static/css")
+	r.Static("/fonts", "./client/static/fonts")
+	r.GET("/api/streak", streak.GetStreakSVG)
+	r.GET("/api/wakatime", wakatime.GetWakatimePiSVG)
+	r.GET("/oauth", oauth.OAuthHandler)
 
 	// Get user value
 	// r.GET("/user/:name", func(c *gin.Context) {

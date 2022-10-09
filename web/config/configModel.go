@@ -5,8 +5,7 @@ type Config struct {
 	SendGridAPIKey       string
 	ContactEmail         string
 	FromEmail            string
-	WakatimeAccessToken  string
-	WakatimeRefreshToken string
+	MongoUrl             string
 	WakatimeClientId     string
 	WakatimeClientSecret string
 	RedirectURI          string

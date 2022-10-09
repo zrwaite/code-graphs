@@ -8,6 +8,10 @@ import (
 )
 
 func GetWakatimePiSVG(c *gin.Context) {
+	if c.Request.Method != "GET" {
+		c.String(405, "Method not allowed")
+		return
+	}
 	codeData := ReadCodeData()
 	c.Header("Last-Modified", codeData.LastModified)
 	c.Header("Expires", codeData.Expires)

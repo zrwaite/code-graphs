@@ -28,11 +28,10 @@ func initDirectory() {
 }
 
 func initEnv() {
-	CONFIG.WakatimeAccessToken = os.Getenv("WAKATIME_ACCESS_TOKEN")
-	if CONFIG.WakatimeAccessToken == "" {
+	CONFIG.MongoUrl = os.Getenv("MONGO_URL")
+	if CONFIG.MongoUrl == "" {
 		log.Fatal("Failed to load env variables")
 	}
-	CONFIG.WakatimeRefreshToken = os.Getenv("WAKATIME_REFRESH_TOKEN")
 	CONFIG.RedirectURI = os.Getenv("REDIRECT_URI")
 	CONFIG.WakatimeClientId = os.Getenv("WAKATIME_CLIENT_ID")
 	CONFIG.WakatimeClientSecret = os.Getenv("WAKATIME_CLIENT_SECRET")

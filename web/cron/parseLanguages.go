@@ -6,26 +6,29 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/zrwaite/github-graphs/api/oauth"
+	"github.com/zrwaite/github-graphs/db/db_service"
 	"github.com/zrwaite/github-graphs/models"
 	"github.com/zrwaite/github-graphs/utils"
 	"github.com/zrwaite/github-graphs/utils/mail"
 )
 
-func getCodeData() (models.WakatimeData, error) {
-	apiLink := "https://wakatime.com/api/v1/users/current/stats/last_year?timeout=15&writes_only=true"
-	resp, err := utils.WakatimeGetRequest(apiLink)
+func getCodeData(user *models.User) (models.WakatimeData, error) {
+	apiLink := "/users/current/stats/last_year?timeout=15&writes_only=true"
+	resp, err := utils.WakatimeGetRequest(apiLink, user.AccessToken)
 	if err != nil {
 		fmt.Println(err)
 	}
 	var data models.WakatimeData
 	if resp.StatusCode == 401 {
 		fmt.Println("Refreshing token - " + time.Now().Format("2006-01-02 15:04:05"))
-		err := utils.RefreshWakatimeToken()
+		accessToken, err := oauth.RefreshWakatimeToken(user.RefreshToken)
 		if err != nil {
 			fmt.Println(err)
 			return data, err
 		}
-		return getCodeData()
+		user.AccessToken = accessToken
+		return getCodeData(user)
 	} else if resp.StatusCode != 200 {
 		fmt.Println("Error getting data: " + time.Now().Format("2006-01-02 15:04:05"))
 		mail.ErrorMessage(fmt.Sprintf("Failed to get code data: \n\n\n%+v\n\n\n<img src=\"https://graphs.insomnizac.xyz/api/wakatime/pi\" />", resp))
@@ -41,13 +44,21 @@ func getCodeData() (models.WakatimeData, error) {
 }
 
 func parseCodeData() {
-	data, err := getCodeData() //wakatime token
+	users, err := db_service.GetUsers()
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	writeCodeData(data)
-	fmt.Println("Languages saved! Total time: " + fmt.Sprint(int(data.Data.TotalSeconds)) + " - " + time.Now().Format("2006-01-02 15:04:05"))
+	for _, user := range users {
+		fmt.Println(user)
+	}
+	// data, err := getCodeData() //wakatime token
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// writeCodeData(data)
+	// fmt.Println("Languages saved! Total time: " + fmt.Sprint(int(data.Data.TotalSeconds)) + " - " + time.Now().Format("2006-01-02 15:04:05"))
 }
 
 func writeCodeData(data models.WakatimeData) {

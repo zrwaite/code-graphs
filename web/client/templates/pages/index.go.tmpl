@@ -8,6 +8,8 @@
 	<body>
 		{{ template "nav" .}}
 		<h1>{{ .title }}</h1>
+		{{/* <a href="https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=https://graphs.insomnizac.xyz/oauth">Authorize Wakatime</a> */}}
+		<a href="https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=http://localhost:8001/oauth">Authorize Wakatime</a>
 		{{ template "footer" .}}
 	</body>
 </html>
