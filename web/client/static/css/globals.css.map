@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../client/sass/globals.scss"],"names":[],"mappings":"AAAA;EACI;EACA;EACA;;AAEJ;EACC;EACA;EACA;EACA;EACA;;;AAID;EACC","file":"globals.css"}
+{"version":3,"sourceRoot":"","sources":["../../sass/globals.scss"],"names":[],"mappings":"AAAA;EACI;EACA;EACA;;AAEJ;EACC;EACA;EACA;EACA;EACA;;;AAID;EACC;;;AAGD;EACC","file":"globals.css"}

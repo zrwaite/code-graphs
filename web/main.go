@@ -42,6 +42,7 @@ func setupRouter() *gin.Engine {
 	})
 
 	r.GET("/", controllers.HomeController)
+	r.GET("/:username", controllers.HomeController)
 	r.Static("/styles", "./client/static/css")
 	r.Static("/fonts", "./client/static/fonts")
 	r.GET("/api/streak/:username", streak.GetStreakSVG)

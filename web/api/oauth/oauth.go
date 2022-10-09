@@ -3,6 +3,7 @@ package oauth
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 
 	"github.com/gin-gonic/gin"
 	"github.com/zrwaite/github-graphs/api/wakatime"
@@ -42,5 +43,6 @@ func OAuthHandler(c *gin.Context) {
 
 	wakatime.SetCodeData(&user)
 
-	c.String(http.StatusOK, "Success")
+	location := url.URL{Path: "/" + user.Username}
+	c.Redirect(http.StatusFound, location.RequestURI())
 }

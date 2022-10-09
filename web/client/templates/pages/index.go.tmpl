@@ -3,13 +3,44 @@
 		<title>Code Graphs</title>
 		<link rel="stylesheet" href="/styles/home.css">
 		<link rel="stylesheet" href="/styles/globals.css">
-		{{ template "nav_styles" . }}
 	</head>
 	<body>
-		{{ template "nav" .}}
-		<h1>{{ .title }}</h1>
-		{{/* <a href="https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=https://graphs.insomnizac.xyz/oauth">Authorize Wakatime</a> */}}
-		<a href="https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=http://localhost:8001/oauth">Authorize Wakatime</a>
-		{{ template "footer" .}}
+		<h1>Code Graphs</h1>
+
+		<main>
+			<section class="openApi">
+				<h2>Open API:</h2>
+				<hr/>
+				<h3>Static Github Streak Graph</h3>
+				<h4><code>https://graphs.insomnizac.xyz/api/streak/:username</code></h4>
+				<h4>Example: <code>https://graphs.insomnizac.xyz/api/streak/zrwaite</code></h4>
+				<img class="githubStreakGraph" src={{ .github_streak_graph_link }} alt="Github Streak Graph" />
+			</section>
+
+			<section class="authApi">
+				<h2>WakaTime API:</h2>
+				<hr/>
+				{{ if .authorized }}
+				{{ else }}
+					<h4>To access WakaTime Graphs, you must give permission to this app.</h4>
+					<a 
+						class="authorizeButton" 
+						{{/* href="https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=https://graphs.insomnizac.xyz/oauth" */}}
+						href="https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=http://localhost:8001/oauth"
+					>
+						Authorize Wakatime
+					</a>
+					<h4>You will be given a 1 hour free trial, then will have to reach out to Zac to get verified.</h4>
+				{{ end }}
+				<h3>Wakatime Pi Graph</h3>
+				{{ if .authorized }}
+					<h4><code>{{ .wakatime_pi_graph_link }}</code></h4>	
+				{{ else }}
+					<h4><code>https://graphs.insomnizac.xyz/api/wakatime/:username</code></h4>
+					<h4>Example: <code>https://graphs.insomnizac.xyz/api/wakatime/Insomnizac</code></h4>
+				{{ end }}
+				<img class="wakatimePiGraph" src={{ .wakatime_pi_graph_link }} alt="Wakatime Pi Graph" />
+			</section>
+		</main>
 	</body>
 </html>

@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "nodemon --watch './**/*.go' --signal SIGTERM --exec 'go' run main.go",
-		"sassdev": "sass --watch client/sass:static/css"
+		"sassdev": "sass --watch client/sass:client/static/css"
 	},
 	"keywords": [],
 	"author": "",
