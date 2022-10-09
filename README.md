@@ -2,7 +2,7 @@
 
  ### I want to display graphs of my WakaTime on my GitHub page and website, so this will be an API I create to get up-to-date graphs!
 
-## `/api/wakatime/pi`:
+## `/api/wakatime?ignore={a,b,c}`:
 - Pi graph that updates every hour with a cronjob pulling data from the WakaTime API
 
 <a href="https://graphs.insomnizac.xyz/api/wakatime" target="_blank">
