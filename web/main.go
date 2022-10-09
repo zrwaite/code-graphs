@@ -9,7 +9,6 @@ import (
 	"github.com/zrwaite/github-graphs/api"
 	"github.com/zrwaite/github-graphs/client/controllers"
 	"github.com/zrwaite/github-graphs/config"
-	"github.com/zrwaite/github-graphs/cron"
 )
 
 // var db = make(map[string]string)
@@ -25,7 +24,7 @@ func setupRouter() *gin.Engine {
 	godotenv.Load(".env")
 	config.ConfigInit()
 	fmt.Println("Starting server at http://localhost:" + port)
-	go cron.RunCronJobs()
+	// go cron.RunCronJobs()
 	// mail.StartupMessage()
 
 	r := gin.Default()
@@ -37,7 +36,7 @@ func setupRouter() *gin.Engine {
 
 	r.GET("/", controllers.HomeController)
 	// r.GET("/styles", http.FileServer(http.Dir("../client")))
-	r.Static("/styles", "./client/css")
+	r.Static("/styles", "./static/css")
 	r.GET("/api/:type", api.NewAPIHandler)
 
 	// Get user value
