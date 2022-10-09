@@ -1,17 +1,19 @@
 # CodeGraphs
 
- ### I want to display graphs of my WakaTime on my GitHub page and website, so this will be an API I create to get up-to-date graphs!
+### API service to display code data as static SVGs
 
-## `/api/wakatime?ignore={a,b,c}`:
+See more info and authorize your account [here](https://graphs.insomnizac.xyz)
+
+## `/api/wakatime/:username?ignore={a,b,c}`:
 - Pi graph that updates every hour with a cronjob pulling data from the WakaTime API
 
-<a href="https://graphs.insomnizac.xyz/api/wakatime" target="_blank">
-<img src="https://graphs.insomnizac.xyz/api/wakatime?ignore=george&username=Insomnizac" />
+<a href="https://graphs.insomnizac.xyz/api/wakatime/Insomnizac" target="_blank">
+<img src="https://graphs.insomnizac.xyz/api/wakatime/Insomnizac" />
 </a>
 
-## `/api/streak?username={username}`:
+## `/api/streak/:username`:
 - Static GitHub streak graph with dark mode styles
 
-<a href="https://graphs.insomnizac.xyz/api/streak?username=zrwaite" target="_blank">
-<img src="https://graphs.insomnizac.xyz/api/streak?username=zrwaite" />
+<a href="https://graphs.insomnizac.xyz/api/streak/zrwaite" target="_blank">
+<img src="https://graphs.insomnizac.xyz/api/streak/zrwaite" />
 </a>
