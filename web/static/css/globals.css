@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  src: url("/fonts/Roboto_Mono/RobotoMono-VariableFont_wght.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Mono";
+  color: color("font");
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+/*# sourceMappingURL=globals.css.map */

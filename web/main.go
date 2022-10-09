@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/zrwaite/github-graphs/api"
+	"github.com/zrwaite/github-graphs/client/controllers"
 	"github.com/zrwaite/github-graphs/config"
-	"github.com/zrwaite/github-graphs/controllers"
 	"github.com/zrwaite/github-graphs/cron"
 )
 
@@ -29,13 +29,15 @@ func setupRouter() *gin.Engine {
 	// mail.StartupMessage()
 
 	r := gin.Default()
-	r.LoadHTMLGlob("templates/*/*.go.tmpl")
+	r.LoadHTMLGlob("client/templates/*/*.go.tmpl")
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.String(http.StatusOK, "pong")
 	})
 
 	r.GET("/", controllers.HomeController)
+	// r.GET("/styles", http.FileServer(http.Dir("../client")))
+	r.Static("/styles", "./client/css")
 	r.GET("/api/:type", api.NewAPIHandler)
 
 	// Get user value

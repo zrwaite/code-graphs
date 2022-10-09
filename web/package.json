@@ -4,12 +4,14 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "nodemon --watch './**/*.go' --signal SIGTERM --exec 'go' run main.go"
+		"dev": "nodemon --watch './**/*.go' --signal SIGTERM --exec 'go' run main.go",
+		"sassdev": "sass --watch client/sass:static/css"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"nodemon": "^2.0.16"
+		"nodemon": "^2.0.16",
+		"sass": "^1.55.0"
 	}
 }
