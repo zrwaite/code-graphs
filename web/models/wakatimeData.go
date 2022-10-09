@@ -29,6 +29,7 @@ type WakatimeData struct {
 	} `json:"data"`
 	Expires      string `json:"expires"`
 	LastModified string `json:"last_modified"`
+	Verified     bool   `json:"verified"`
 }
 
 type WakaTimeTokenResponse struct {

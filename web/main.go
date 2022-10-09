@@ -8,7 +8,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/zrwaite/github-graphs/api/oauth"
 	"github.com/zrwaite/github-graphs/api/streak"
-	"github.com/zrwaite/github-graphs/api/wakatime"
+	"github.com/zrwaite/github-graphs/api/wakatime/wakatime_pi"
 	"github.com/zrwaite/github-graphs/client/controllers"
 	"github.com/zrwaite/github-graphs/config"
 	"github.com/zrwaite/github-graphs/cron"
@@ -29,6 +29,7 @@ func setupRouter() *gin.Engine {
 	godotenv.Load(".env")
 	config.ConfigInit()
 	db.ConnectToMongoDB()
+	db.ConnectToRedis()
 	// db.InitializeDatabase()
 	go cron.RunCronJobs()
 	// mail.StartupMessage()
@@ -43,13 +44,13 @@ func setupRouter() *gin.Engine {
 	r.GET("/", controllers.HomeController)
 	r.Static("/styles", "./client/static/css")
 	r.Static("/fonts", "./client/static/fonts")
-	r.GET("/api/streak", streak.GetStreakSVG)
-	r.GET("/api/wakatime", wakatime.GetWakatimePiSVG)
+	r.GET("/api/streak/:username", streak.GetStreakSVG)
+	r.GET("/api/wakatime/:username", wakatime_pi.GetWakatimePiSVG)
 	r.GET("/oauth", oauth.OAuthHandler)
+	r.POST("/clear_cache", db.ClearCacheHandler)
 
 	// Get user value
 	// r.GET("/user/:name", func(c *gin.Context) {
-	// 	user := c.Params.ByName("name")
 	// 	value, ok := db[user]
 	// 	if ok {
 	// 		c.JSON(http.StatusOK, gin.H{"user": user, "value": value})

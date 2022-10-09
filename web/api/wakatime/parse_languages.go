@@ -5,7 +5,7 @@ import (
 	"github.com/zrwaite/github-graphs/utils"
 )
 
-func parseLanguages(data models.WakatimeData, ignoreLanguages []string) models.Languages {
+func ParseLanguages(data *models.WakatimeData, ignoreLanguages []string) models.Languages {
 	languageData := models.Languages{}
 	totalPercent := 100.0
 	totalSeconds := data.Data.TotalSeconds

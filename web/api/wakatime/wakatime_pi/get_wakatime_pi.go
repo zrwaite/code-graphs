@@ -1,18 +1,24 @@
-package wakatime
+package wakatime_pi
 
 import (
 	"strings"
 
 	svg "github.com/ajstarks/svgo"
 	"github.com/gin-gonic/gin"
+	"github.com/zrwaite/github-graphs/api/wakatime"
 )
 
 func GetWakatimePiSVG(c *gin.Context) {
-	if c.Request.Method != "GET" {
-		c.String(405, "Method not allowed")
+	username := c.Params.ByName("username")
+	found, codeData := wakatime.ReadCodeData(username)
+	if !codeData.Verified {
+		c.String(401, "User not verified")
 		return
 	}
-	codeData := ReadCodeData()
+	if !found {
+		c.String(401, "User not found")
+		return
+	}
 	c.Header("Last-Modified", codeData.LastModified)
 	c.Header("Expires", codeData.Expires)
 
@@ -24,10 +30,10 @@ func GetWakatimePiSVG(c *gin.Context) {
 		ignoreLanguages = strings.Split(ignoreString, ",")
 	}
 	if removeDefaultIgnore != "true" {
-		defaultIgnoreLanguages := []string{"JSON", "Markdown", "Other", "INI", "Text", "XML", "YAML", "Git Config", "TOML", "Apache Config", "GitIgnore file", "GraphQL", "Tex", "CMake", "Git"}
+		defaultIgnoreLanguages := []string{"JSON", "Markdown", "Other", "INI", "Text", "XML", "YAML", "Git Config", "TOML", "Apache Config", "GitIgnore file", "GraphQL", "Tex", "CMake", "Git", "George"}
 		ignoreLanguages = append(ignoreLanguages, defaultIgnoreLanguages...)
 	}
-	languages := parseLanguages(codeData, ignoreLanguages)
+	languages := wakatime.ParseLanguages(codeData, ignoreLanguages)
 
 	c.Header("Content-Type", "image/svg+xml")
 	c.Header("Cache-Control", "public, max-age=3600")

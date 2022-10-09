@@ -33,11 +33,8 @@ func GetBackground() string {
 }
 
 func GetStreakSVG(c *gin.Context) {
-	if c.Request.Method != "GET" {
-		c.String(405, "Method not allowed")
-		return
-	}
-	username := c.Query("username")
+	username := c.Params.ByName("username")
+
 	if username == "" {
 		c.String(400, "Username is required")
 		return

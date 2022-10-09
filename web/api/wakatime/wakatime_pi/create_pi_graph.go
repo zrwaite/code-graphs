@@ -1,4 +1,4 @@
-package wakatime
+package wakatime_pi
 
 import (
 	"math"

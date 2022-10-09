@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/zrwaite/github-graphs/api/wakatime"
 	"github.com/zrwaite/github-graphs/db/db_service"
 	"github.com/zrwaite/github-graphs/models"
 )
@@ -38,6 +39,8 @@ func OAuthHandler(c *gin.Context) {
 		c.String(http.StatusInternalServerError, "Internal server error saving user data")
 		return
 	}
+
+	wakatime.SetCodeData(&user)
 
 	c.String(http.StatusOK, "Success")
 }

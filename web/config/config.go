@@ -22,7 +22,8 @@ func initDirectory() {
 	}
 	CONFIG.Directory = filepath.Dir(ex) + "/"
 	if strings.Contains(ex, "var/folders") {
-		fmt.Println("dev mode directory")
+		fmt.Println("dev mode")
+		CONFIG.Dev = true
 		CONFIG.Directory = "/Users/zacharywaite/Coding/CodeGraphs/web/"
 	}
 }
@@ -32,10 +33,12 @@ func initEnv() {
 	if CONFIG.MongoUrl == "" {
 		log.Fatal("Failed to load env variables")
 	}
+	CONFIG.RedisPassword = os.Getenv("REDIS_PASSWORD")
 	CONFIG.RedirectURI = os.Getenv("REDIRECT_URI")
 	CONFIG.WakatimeClientId = os.Getenv("WAKATIME_CLIENT_ID")
 	CONFIG.WakatimeClientSecret = os.Getenv("WAKATIME_CLIENT_SECRET")
 	CONFIG.SendGridAPIKey = os.Getenv("SENDGRID_API_KEY")
 	CONFIG.ContactEmail = os.Getenv("CONTACT_EMAIL")
 	CONFIG.FromEmail = os.Getenv("FROM_EMAIL")
+	CONFIG.AdminPassword = os.Getenv("ADMIN_PASSWORD")
 }
