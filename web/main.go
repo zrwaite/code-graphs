@@ -13,6 +13,7 @@ import (
 	"github.com/zrwaite/github-graphs/config"
 	"github.com/zrwaite/github-graphs/cron"
 	"github.com/zrwaite/github-graphs/db"
+	"github.com/zrwaite/github-graphs/db/cache_service"
 )
 
 // var db = make(map[string]string)
@@ -48,17 +49,7 @@ func setupRouter() *gin.Engine {
 	r.GET("/api/streak/:username", streak.GetStreakSVG)
 	r.GET("/api/wakatime/:username", wakatime_pi.GetWakatimePiSVG)
 	r.GET("/oauth", oauth.OAuthHandler)
-	r.POST("/clear_cache", db.ClearCacheHandler)
-
-	// Get user value
-	// r.GET("/user/:name", func(c *gin.Context) {
-	// 	value, ok := db[user]
-	// 	if ok {
-	// 		c.JSON(http.StatusOK, gin.H{"user": user, "value": value})
-	// 	} else {
-	// 		c.JSON(http.StatusOK, gin.H{"user": user, "status": "no value"})
-	// 	}
-	// })
+	r.POST("/clear_cache", cache_service.ClearCacheHandler)
 
 	// Authorized group (uses gin.BasicAuth() middleware)
 	// Same than:

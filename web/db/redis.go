@@ -5,10 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"net/http"
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
 	"github.com/zrwaite/github-graphs/config"
 )
@@ -28,23 +26,6 @@ func ConnectToRedis() {
 	err := SetCache("test", "test")
 	if err != nil {
 		log.Fatal(err)
-	}
-}
-
-func ClearCacheHandler(c *gin.Context) {
-	var json struct {
-		Password string `json:"password" binding:"required"`
-	}
-
-	if c.Bind(&json) == nil {
-		if json.Password == config.CONFIG.AdminPassword {
-			ClearCache()
-			c.JSON(200, gin.H{"status": "ok"})
-		} else {
-			c.JSON(401, gin.H{"status": "Invalid password"})
-		}
-	} else {
-		c.String(http.StatusBadRequest, "Must provide password")
 	}
 }
 
@@ -79,6 +60,15 @@ func SetCache(key string, value string) error {
 	return nil
 }
 
+func SetCacheNoExpire(key string, value string) error {
+	ctx := context.Background()
+	err := Cache.Set(ctx, key, value, 0).Err()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func GetJsonCache(key string, target any) bool {
 	cacheJson, found := GetCache(key)
 	if found {
@@ -97,6 +87,18 @@ func SetJsonCache(key string, value any) error {
 		return err
 	}
 	err = SetCache(key, string(newJson))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func SetJsonCacheNoExpire(key string, value any) error {
+	newJson, err := json.Marshal(value)
+	if err != nil {
+		return err
+	}
+	err = SetCacheNoExpire(key, string(newJson))
 	if err != nil {
 		return err
 	}

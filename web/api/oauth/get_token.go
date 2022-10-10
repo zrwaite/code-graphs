@@ -20,7 +20,7 @@ func GetWakatimeToken(code string) (*models.WakaTimeTokenResponse, error) {
 	form.Add("grant_type", "authorization_code")
 	form.Add("client_id", config.CONFIG.WakatimeClientId)
 	form.Add("client_secret", config.CONFIG.WakatimeClientSecret)
-	form.Add("redirect_uri", config.CONFIG.RedirectURI)
+	form.Add("redirect_uri", config.CONFIG.AppURI+"/oauth")
 
 	req, err := http.NewRequest("POST", "https://wakatime.com/oauth/token", strings.NewReader(form.Encode()))
 	if err != nil {

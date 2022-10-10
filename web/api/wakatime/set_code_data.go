@@ -9,7 +9,7 @@ import (
 )
 
 func WriteCodeData(username string, data models.WakatimeData) error {
-	err := db.SetJsonCache("wakatime_"+username, data)
+	err := db.SetJsonCacheNoExpire("wakatime_"+username, data)
 	if err != nil {
 		fmt.Println(err)
 		return err

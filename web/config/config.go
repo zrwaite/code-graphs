@@ -21,10 +21,12 @@ func initDirectory() {
 		panic(err)
 	}
 	CONFIG.Directory = filepath.Dir(ex) + "/"
+	CONFIG.AppURI = "https://graphs.insomnizac.xyz"
 	if strings.Contains(ex, "var/folders") {
 		fmt.Println("dev mode")
 		CONFIG.Dev = true
 		CONFIG.Directory = "/Users/zacharywaite/Coding/CodeGraphs/web/"
+		CONFIG.AppURI = "http://localhost:8001"
 	}
 }
 
@@ -34,7 +36,6 @@ func initEnv() {
 		log.Fatal("Failed to load env variables")
 	}
 	CONFIG.RedisPassword = os.Getenv("REDIS_PASSWORD")
-	CONFIG.RedirectURI = os.Getenv("REDIRECT_URI")
 	CONFIG.WakatimeClientId = os.Getenv("WAKATIME_CLIENT_ID")
 	CONFIG.WakatimeClientSecret = os.Getenv("WAKATIME_CLIENT_SECRET")
 	CONFIG.SendGridAPIKey = os.Getenv("SENDGRID_API_KEY")

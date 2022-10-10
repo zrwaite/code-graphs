@@ -1,14 +1,13 @@
-package cron
+package wakatime
 
 import (
 	"fmt"
 
-	"github.com/zrwaite/github-graphs/api/wakatime"
 	"github.com/zrwaite/github-graphs/db/db_service"
 	"github.com/zrwaite/github-graphs/models"
 )
 
-func parseCodeData() {
+func ParseCodeData() {
 	users, err := db_service.GetUsers()
 	if err != nil {
 		fmt.Println(err)
@@ -16,9 +15,9 @@ func parseCodeData() {
 	}
 	for _, user := range users {
 		if user.Verified {
-			wakatime.SetCodeData(user)
+			SetCodeData(user)
 		} else {
-			wakatime.WriteCodeData(user.Username, models.WakatimeData{})
+			WriteCodeData(user.Username, models.WakatimeData{})
 		}
 	}
 }

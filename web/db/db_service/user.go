@@ -20,6 +20,17 @@ func GetUsers() ([]*models.User, error) {
 	return users, nil
 }
 
+func GetUser(username string) (*models.User, error) {
+	cursor := db.MongoDatabase.Collection("users").FindOne(context.TODO(), bson.M{
+		"username": username,
+	})
+	var user models.User
+	if err := cursor.Decode(&user); err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
 func SaveUser(user *models.User) error {
 	_, err := db.MongoDatabase.Collection("users").InsertOne(context.TODO(), user)
 	if err != nil {

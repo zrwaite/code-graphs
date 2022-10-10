@@ -25,8 +25,7 @@
 					<h4>To access WakaTime Graphs, you must give permission to this app.</h4>
 					<a 
 						class="authorizeButton" 
-						href="https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=https://graphs.insomnizac.xyz/oauth"
-						{{/* href="https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=http://localhost:8001/oauth" */}}
+						href={{ .auth_href }}
 					>
 						Authorize Wakatime
 					</a>

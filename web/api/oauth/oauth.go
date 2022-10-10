@@ -33,6 +33,12 @@ func OAuthHandler(c *gin.Context) {
 		RefreshToken: data.RefreshToken,
 	}
 
+	_, err = db_service.GetUser(user.Username)
+	if err == nil {
+		c.String(http.StatusAccepted, "User already authorized")
+		return
+	}
+
 	err = db_service.SaveUser(&user)
 	if err != nil {
 		fmt.Println(err)

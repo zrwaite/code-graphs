@@ -10,6 +10,6 @@ type Config struct {
 	WakatimeClientId     string
 	WakatimeClientSecret string
 	Dev                  bool
-	RedirectURI          string
+	AppURI               string
 	AdminPassword        string
 }
