@@ -38,3 +38,17 @@ func SaveUser(user *models.User) error {
 	}
 	return nil
 }
+
+func UpdateUser(user *models.User) error {
+	_, err := db.MongoDatabase.Collection("users").UpdateOne(context.TODO(), bson.M{
+		"username": user.Username,
+	}, bson.M{
+		"$set": bson.M{
+			"access_token": user.AccessToken,
+		},
+	})
+	if err != nil {
+		return err
+	}
+	return nil
+}

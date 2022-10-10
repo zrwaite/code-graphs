@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/zrwaite/github-graphs/api/auth"
+	"github.com/zrwaite/github-graphs/db/db_service"
 	"github.com/zrwaite/github-graphs/models"
 	"github.com/zrwaite/github-graphs/utils"
 	"github.com/zrwaite/github-graphs/utils/mail"
@@ -27,6 +28,12 @@ func getCodeData(user *models.User) (models.WakatimeData, error) {
 			return data, err
 		}
 		user.AccessToken = accessToken
+		err = db_service.UpdateUser(user)
+		if err != nil {
+			mail.ErrorMessage(fmt.Sprintf("Failed to update user: \n\n%+v\n", user))
+			fmt.Println(err)
+			return data, err
+		}
 		return getCodeData(user)
 	} else if resp.StatusCode != 200 {
 		fmt.Println("Error getting data: " + time.Now().Format("2006-01-02 15:04:05"))
