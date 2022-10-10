@@ -31,7 +31,7 @@ func ConnectToRedis() {
 
 func ClearCache() {
 	ctx := context.Background()
-	Cache.FlushDB(ctx)
+	fmt.Println(Cache.FlushDB(ctx))
 }
 
 func GetCache(key string) (string, bool) {

@@ -1,14 +1,15 @@
 package oauth
 
 import (
-	"fmt"
 	"net/http"
 	"net/url"
 
 	"github.com/gin-gonic/gin"
 	"github.com/zrwaite/github-graphs/api/wakatime"
+	"github.com/zrwaite/github-graphs/config"
 	"github.com/zrwaite/github-graphs/db/db_service"
 	"github.com/zrwaite/github-graphs/models"
+	"github.com/zrwaite/github-graphs/utils/mail"
 )
 
 func OAuthHandler(c *gin.Context) {
@@ -41,13 +42,18 @@ func OAuthHandler(c *gin.Context) {
 
 	err = db_service.SaveUser(&user)
 	if err != nil {
-		fmt.Println(err)
-		fmt.Println(user)
 		c.String(http.StatusInternalServerError, "Internal server error saving user data")
 		return
 	}
 
 	wakatime.SetCodeData(&user)
+	mail.SendMessage(config.CONFIG.ContactEmail, "Zac", "CodeGraphs: New user has joined: "+user.Username, "New user: "+user.Username+" has joined wakatime. Email them here: "+userResp.Data.Email)
+	mail.SendMessage(userResp.Data.Email, user.Username, "Welcome to CodeGraphs",
+		`<h1>Welcome to CodeGraphs!</h1>
+<h3>You can view your graphs <a href="https://graphs.insomnizac.xyz/`+user.Username+`">here</a></h3>
+
+<p>Reach out to Zac for account verification</p>
+`)
 
 	location := url.URL{Path: "/" + user.Username}
 	c.Redirect(http.StatusFound, location.RequestURI())

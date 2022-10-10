@@ -35,7 +35,7 @@ func GetWakatimeToken(code string) (*models.WakaTimeTokenResponse, error) {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		mail.ErrorMessage("Failed to get wakatime token")
+		fmt.Println("Failed to get wakatime token")
 		return nil, err
 	}
 	defer resp.Body.Close()
@@ -47,7 +47,7 @@ func GetWakatimeToken(code string) (*models.WakaTimeTokenResponse, error) {
 	var responseData *models.WakaTimeTokenResponse
 	err = json.NewDecoder(resp.Body).Decode(&responseData)
 	if err != nil {
-		mail.ErrorMessage("Failed to get wakatime token")
+		mail.ErrorMessage("Failed to get decode token")
 		return nil, err
 	}
 	return responseData, nil

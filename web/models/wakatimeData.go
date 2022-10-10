@@ -40,6 +40,7 @@ type WakaTimeTokenResponse struct {
 type WakaTimeUserResponse struct {
 	Data struct {
 		Username string `json:"username"`
+		Email    string `json:"email"`
 	} `json:"data"`
 }
 
