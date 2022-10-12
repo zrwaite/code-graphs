@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		496D02A528F5282000675570 /* TextViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D02A428F5282000675570 /* TextViewModifiers.swift */; };
 		49FDEB1928F4AA0100D37D29 /* CodeGraphsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FDEB1828F4AA0100D37D29 /* CodeGraphsApp.swift */; };
 		49FDEB1B28F4AA0100D37D29 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FDEB1A28F4AA0100D37D29 /* ContentView.swift */; };
 		49FDEB1D28F4AA0200D37D29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FDEB1C28F4AA0200D37D29 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		496D02A428F5282000675570 /* TextViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewModifiers.swift; sourceTree = "<group>"; };
 		49FDEB1528F4AA0100D37D29 /* CodeGraphs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeGraphs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FDEB1828F4AA0100D37D29 /* CodeGraphsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeGraphsApp.swift; sourceTree = "<group>"; };
 		49FDEB1A28F4AA0100D37D29 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		496D02A328F527EF00675570 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				496D02A428F5282000675570 /* TextViewModifiers.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
 		49FDEB0C28F4AA0100D37D29 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +151,7 @@
 		49FDEB1728F4AA0100D37D29 /* CodeGraphs */ = {
 			isa = PBXGroup;
 			children = (
+				496D02A328F527EF00675570 /* Styles */,
 				49FDEB1828F4AA0100D37D29 /* CodeGraphsApp.swift */,
 				49FDEB1A28F4AA0100D37D29 /* ContentView.swift */,
 				49FDEB1C28F4AA0200D37D29 /* Assets.xcassets */,
@@ -355,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496D02A528F5282000675570 /* TextViewModifiers.swift in Sources */,
 				49FDEB5428F4AA6A00D37D29 /* WakaWidgets.intentdefinition in Sources */,
 				49FDEB1B28F4AA0100D37D29 /* ContentView.swift in Sources */,
 				49FDEB1928F4AA0100D37D29 /* CodeGraphsApp.swift in Sources */,

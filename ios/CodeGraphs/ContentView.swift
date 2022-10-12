@@ -7,15 +7,26 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        Text("Code Graphs")
-            .padding()
-    }
+func AuthorizeWakatime() {
+    print("ello")
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+
+struct ContentView: View {
+    var body: some View {
+        ZStack {
+            Color.black.ignoresSafeArea()
+            VStack{
+                Text("Waka Widgets")
+                    .font(.largeTitle)
+                    .modifier(WWText())
+                Text("Welcome!")
+                    .font(.title)
+                    .modifier(WWText())
+                Button("Authorize Wakatime", action: AuthorizeWakatime)
+                Link("Learn SwiftUI", destination: URL(string: "https://www.hackingwithswift.com/quick-start/swiftui")!)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        }
     }
 }
