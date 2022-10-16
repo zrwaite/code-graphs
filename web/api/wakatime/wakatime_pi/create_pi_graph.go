@@ -30,6 +30,7 @@ func CreateSlice(s *svg.SVG, start float64, size float64, colour string, addUser
 	endY := middleY + int(math.Sin(end)*radius)
 	s.Arc(startX, startY, int(radius), int(radius), 0, false, true, endX, endY, "fill:"+colour)
 	s.Polygon([]int{middleX, startX, endX}, []int{middleY, startY, endY}, "fill:"+colour)
+	s.Line(startX, startY, endX, endY, "stroke:"+colour+";stroke-width:1")
 }
 
 func CreatePiGraph(s *svg.SVG, languages models.Languages, addUsername bool, username string) {
