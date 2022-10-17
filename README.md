@@ -4,7 +4,7 @@
 
 See more info and authorize your account [here](https://graphs.insomnizac.xyz)
 
-## `/api/wakatime/:username?ignore={a,b,c}?addUsername={'true'}`:
+## `/api/wakatime/:username?ignore={a,b,c}&addUsername={'true'}&removeDefaultIgnore={'true'}`:
 - Pi graph that updates every hour with a cronjob pulling data from the WakaTime API
 
 <a href="https://graphs.insomnizac.xyz/api/wakatime/Insomnizac" target="_blank">
