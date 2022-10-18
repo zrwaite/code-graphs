@@ -34,11 +34,14 @@
 				<h3>Wakatime Pi Graph</h3>
 				{{ if .authorized }}
 					<h4><code>{{ .wakatime_pi_graph_link }}</code></h4>	
+					<img class="wakatimePiGraph" src={{ .wakatime_pi_graph_link }} alt="Wakatime Pi Graph" />
 				{{ else }}
 					<h4><code>https://graphs.insomnizac.xyz/api/wakatime/:username</code></h4>
 					<h4>Example: <code>https://graphs.insomnizac.xyz/api/wakatime/Insomnizac</code></h4>
+					{{ range .public_graph_links }}
+						<img class="wakatimePiGraph" src={{ . }} alt="Wakatime Pi Graph" />
+					{{ end }}
 				{{ end }}
-				<img class="wakatimePiGraph" src={{ .wakatime_pi_graph_link }} alt="Wakatime Pi Graph" />
 			</section>
 		</main>
 	</body>

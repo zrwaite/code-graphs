@@ -20,6 +20,21 @@ func GetUsers() ([]*models.User, error) {
 	return users, nil
 }
 
+func GetUsersWithCache() ([]*models.User, error) {
+	cacheKey := "users"
+	users := []*models.User{}
+	found := db.GetJsonCache(cacheKey, &users)
+	if found {
+		return users, nil
+	}
+	users, err := GetUsers()
+	if err != nil {
+		return nil, err
+	}
+	db.SetJsonCache(cacheKey, users)
+	return users, nil
+}
+
 func GetUser(username string) (*models.User, error) {
 	cursor := db.MongoDatabase.Collection("users").FindOne(context.TODO(), bson.M{
 		"username": username,
