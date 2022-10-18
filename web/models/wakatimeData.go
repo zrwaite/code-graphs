@@ -49,4 +49,5 @@ type User struct {
 	AccessToken  string `bson:"access_token"`
 	RefreshToken string `bson:"refresh_token"`
 	Verified     bool   `bson:"verified"`
+	Public       bool   `bson:"public"`
 }

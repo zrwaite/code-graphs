@@ -31,7 +31,7 @@ func GetWakatimePiSVG(c *gin.Context) {
 		ignoreLanguages = strings.Split(ignoreString, ",")
 	}
 	if removeDefaultIgnore != "true" {
-		defaultIgnoreLanguages := []string{"JSON", "Markdown", "Other", "INI", "Text", "XML", "YAML", "Git Config", "TOML", "Apache Config", "GitIgnore file", "GraphQL", "Tex", "CMake", "Git", "George"}
+		defaultIgnoreLanguages := []string{"JSON", "Markdown", "Other", "INI", "Text", "XML", "YAML", "Git Config", "TOML", "Apache Config", "GitIgnore file", "GraphQL", "Tex", "CMake", "Git", "George", "CSV", "textmate", "roff", "Tcsh", "sbt", "Nginx configuration", "Protocol Buffer", "Properties"}
 		ignoreLanguages = append(ignoreLanguages, defaultIgnoreLanguages...)
 	}
 	languages := wakatime.ParseLanguages(codeData, ignoreLanguages)

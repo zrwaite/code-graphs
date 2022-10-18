@@ -17,5 +17,6 @@ var userSchema = bson.M{
 		"access_token":  bsonString,
 		"refresh_token": bsonString,
 		"verified":      bsonBoolean,
+		"public":        bsonBoolean,
 	},
 }
