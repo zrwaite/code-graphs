@@ -52,6 +52,14 @@ func GetColour(language string) string {
 		return "rgb(217, 10, 0)"
 	case "Scala":
 		return "rgb(153, 0, 0)"
+	case "Bash":
+		return "rgb(3, 252, 53)"
+	case "Arduino":
+		return "rgb(12, 145, 166)"
+	case "Assembly":
+		return "#888888"
+	case "Groovy":
+		return "rgb(43, 158, 204)"
 	default:
 		return "lightgrey"
 	}
