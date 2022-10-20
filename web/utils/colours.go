@@ -53,7 +53,7 @@ func GetColour(language string) string {
 	case "Scala":
 		return "rgb(153, 0, 0)"
 	case "Bash":
-		return "rgb(3, 252, 53)"
+		return "rgb(3, 200, 53)"
 	case "Arduino":
 		return "rgb(12, 145, 166)"
 	case "Assembly":

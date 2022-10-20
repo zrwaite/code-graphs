@@ -48,5 +48,7 @@ func CreateLegend(s *svg.SVG, languages models.Languages) {
 		s.Text(960, i*28+offset, languageList, "font:bold 20pt Menlo; text-anchor:left; fill:"+"white")
 	}
 
-	s.Text(480, 895, "Graphs by Zac - zrwaite", "text-anchor:middle; font:bold 20pt Menlo; fill:white")
+	s.Link("https://github.com/zrwaite", "Hello")
+	s.Text(480, 895, "github.com/zrwaite", "text-anchor:middle; font:bold 18pt Menlo; fill:white")
+	s.LinkEnd()
 }
