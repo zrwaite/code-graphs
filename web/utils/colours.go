@@ -29,9 +29,9 @@ func GetColour(language string) string {
 	case "SCSS":
 		return "rgb(201, 85, 146)"
 	case "CSS":
-		return "rgb(28, 49, 220)"
+		return "#1337ed"
 	case "Rust":
-		return "#ff5c33"
+		return "#ff8b6e"
 	case "Racket":
 		return "rgb(100, 13, 20)"
 	case "Markdown":
