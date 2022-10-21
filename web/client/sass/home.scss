@@ -41,6 +41,12 @@ section {
 	h3 {
 		margin-top: 1rem;
 	}
+	.linkedImage {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}	
 }
 
 .githubStreakGraph {

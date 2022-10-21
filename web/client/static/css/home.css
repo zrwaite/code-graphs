@@ -45,6 +45,12 @@ section {
 section h3 {
   margin-top: 1rem;
 }
+section .linkedImage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .githubStreakGraph {
   width: 100%;
