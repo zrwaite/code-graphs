@@ -3,7 +3,7 @@ services:
     web:
         env_file: './.env'
         build: web
-        image: 'zrwaite/codegraphs_web:3.2.1'
+        image: 'zrwaite/codegraphs_web:3.2.2'
         ports:
             - '8001:8001'
     codegraphs_redis:

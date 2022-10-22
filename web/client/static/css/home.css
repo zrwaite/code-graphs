@@ -51,13 +51,15 @@ section .linkedImage {
   flex-direction: column;
   align-items: center;
 }
-
-.githubStreakGraph {
+section .linkedImage a {
+  width: 80%;
+}
+section .linkedImage a img {
   width: 100%;
 }
 
-.wakatimePiGraph {
-  width: 80%;
+.githubStreakGraph {
+  width: 100%;
 }
 
 /*# sourceMappingURL=home.css.map */

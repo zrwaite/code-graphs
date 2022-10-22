@@ -14,7 +14,7 @@
 				<h3>Static Github Streak Graph</h3>
 				<h4><code>https://graphs.insomnizac.xyz/api/streak/:username</code></h4>
 				<h4>Example: <code>https://graphs.insomnizac.xyz/api/streak/zrwaite</code></h4>
-				<a href={ .github_streak_graph_link }>
+				<a href={{ .github_streak_graph_link }}>
 					<img class="githubStreakGraph" src={{ .github_streak_graph_link }} alt="Github Streak Graph" />
 				</a>
 			</section>
@@ -36,16 +36,20 @@
 				<h3>Wakatime Pi Graph</h3>
 				{{ if .authorized }}
 					<h4><code>{{ .wakatime_pi_graph_link }}</code></h4>	
-					<a class="linkedImage" href={{ .wakatime_pi_graph_link }}>
-						<img class="wakatimePiGraph" src={{ .wakatime_pi_graph_link }} alt="Wakatime Pi Graph" />
-					</a>
+					<div class="linkedImage">
+						<a href={{ .wakatime_pi_graph_link }}>
+							<img src={{ .wakatime_pi_graph_link }} alt="Wakatime Pi Graph" />
+						</a>
+					</div>
 				{{ else }}
 					<h4><code>https://graphs.insomnizac.xyz/api/wakatime/:username</code></h4>
 					<h4>Example: <code>https://graphs.insomnizac.xyz/api/wakatime/Insomnizac</code></h4>
 					{{ range .public_graph_links }}
-						<a class="linkedImage" href={{ . }}>
-							<img class="wakatimePiGraph" src={{ . }} alt="Wakatime Pi Graph" />
-						</a>
+						<div class="linkedImage">
+							<a href={{ . }}>
+								<img src={{ . }} alt="Wakatime Pi Graph" />
+							</a>
+						</div>
 					{{ end }}
 				{{ end }}
 			</section>
