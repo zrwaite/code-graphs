@@ -40,6 +40,11 @@ func getCodeData(user *models.User) (models.WakatimeData, error) {
 		mail.ErrorMessage(fmt.Sprintf("Failed to get code data: \n\n\n%+v\n\n\n<img src=\"https://graphs.insomnizac.xyz/api/wakatime/pi\" />", resp))
 		return data, errors.New("failed to get code data")
 	}
+	if resp.StatusCode == 202 {
+		fmt.Println("Thicc data - " + time.Now().Format("2006-01-02 15:04:05"))
+		mail.ErrorMessage("Thicc data for user " + user.Username)
+		return data, errors.New("data is too thicc: graphs not loaded")
+	}
 	err = json.NewDecoder(resp.Body).Decode(&data)
 	if err != nil {
 		return data, err

@@ -3,7 +3,8 @@ package oauth
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
+
 	"log"
 	"net/http"
 	"net/url"
@@ -41,7 +42,7 @@ func GetWakatimeToken(code string) (*models.WakaTimeTokenResponse, error) {
 	defer resp.Body.Close()
 	if resp.StatusCode != 200 {
 		fmt.Println("Error getting wakatime token: " + resp.Status)
-		data, _ := ioutil.ReadAll(resp.Body)
+		data, _ := io.ReadAll(resp.Body)
 		fmt.Println(string(data))
 	}
 	var responseData *models.WakaTimeTokenResponse
