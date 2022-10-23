@@ -9,6 +9,7 @@ import (
 	"github.com/zrwaite/github-graphs/api/oauth"
 	"github.com/zrwaite/github-graphs/api/streak"
 	"github.com/zrwaite/github-graphs/api/wakatime/wakatime_pi"
+	"github.com/zrwaite/github-graphs/api/wakatime/wakatime_top_stats"
 	"github.com/zrwaite/github-graphs/client/controllers"
 	"github.com/zrwaite/github-graphs/config"
 	"github.com/zrwaite/github-graphs/cron"
@@ -48,6 +49,7 @@ func setupRouter() *gin.Engine {
 	r.Static("/fonts", "./client/static/fonts")
 	r.GET("/api/streak/:username", streak.GetStreakSVG)
 	r.GET("/api/wakatime/:username", wakatime_pi.GetWakatimePiSVG)
+	r.GET("/api/wakatime_stats/:username", wakatime_top_stats.GetWakatimeTopStatsSVG)
 	r.GET("/oauth", oauth.OAuthHandler)
 	r.POST("/clear_cache", cache_service.ClearCacheHandler)
 

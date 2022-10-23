@@ -7,29 +7,31 @@ type TimeData struct {
 	Text         string  `json:"text"`
 }
 
+type WakatimeStatsData struct {
+	BestDay struct {
+		Date         string `json:"date"`
+		TotalSeconds int    `json:"total_seconds"`
+		Text         string `json:"text"`
+	}
+	Categories []struct {
+		DailySums map[string]float64 `json:"daily_sums"`
+		Name      string             `json:"name"` // "Coding"
+	}
+	Range            string     `json:"human_readable_range"`
+	Status           string     `json:"status"` // "pending_update" or "ok"
+	Languages        []TimeData `json:"languages"`
+	Editors          []TimeData `json:"editors"`
+	OperatingSystems []TimeData `json:"operating_systems"`
+	Projects         []TimeData `json:"projects"`
+	Username         string     `json:"username"`
+	TotalSeconds     float64    `json:"total_seconds"`
+}
+
 type WakatimeData struct {
-	Data struct {
-		BestDay struct {
-			Date         string `json:"date"`
-			TotalSeconds int    `json:"total_seconds"`
-			Text         string `json:"text"`
-		}
-		Categories []struct {
-			DailySums map[string]float64 `json:"daily_sums"`
-			Name      string             `json:"name"` // "Coding"
-		}
-		Range            string     `json:"human_readable_range"`
-		Status           string     `json:"status"` // "pending_update" or "ok"
-		Languages        []TimeData `json:"languages"`
-		Editors          []TimeData `json:"editors"`
-		OperatingSystems []TimeData `json:"operating_systems"`
-		Projects         []TimeData `json:"projects"`
-		Username         string     `json:"username"`
-		TotalSeconds     float64    `json:"total_seconds"`
-	} `json:"data"`
-	Expires      string `json:"expires"`
-	LastModified string `json:"last_modified"`
-	Verified     bool   `json:"verified"`
+	Data         WakatimeStatsData `json:"data"`
+	Expires      string            `json:"expires"`
+	LastModified string            `json:"last_modified"`
+	Verified     bool              `json:"verified"`
 }
 
 type WakaTimeTokenResponse struct {

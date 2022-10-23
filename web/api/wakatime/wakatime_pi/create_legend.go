@@ -24,7 +24,6 @@ func CreateLegend(s *svg.SVG, languages models.Languages) {
 	s.Text(1020, length*52+195, "Other:", "font:bold 35pt Menlo; text-anchor:left; fill:white")
 	s.Text(1330, length*52+195, fmt.Sprintf("%.1f%%", languages.Other.Percent), "font:bold 35pt Menlo; text-anchor:left; fill:white")
 	offset := length*52 + 240
-	// fmt.Println(languages.Other.Languages)
 	otherLanguageLines := [][]string{}
 	index := 0
 	languageLength := 0
