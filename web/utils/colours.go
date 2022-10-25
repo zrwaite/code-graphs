@@ -60,6 +60,24 @@ func GetColour(language string) string {
 		return "#888888"
 	case "Groovy":
 		return "rgb(43, 158, 204)"
+	case "Kotlin":
+		return "#9532e1"
+	case "VS Code":
+		return "#1d90db"
+	case "IntelliJ":
+		return "#f52563"
+	case "PhpStorm":
+		return "#8d46e3"
+	case "WebStorm":
+		return "#1eb6c7"
+	case "CLion":
+		return "#39d47c"
+	case "Xcode":
+		return "#3670db"
+	case "PyCharm":
+		return "#29cf6b"
+	case "RubyMine":
+		return "#e64022"
 	default:
 		return "lightgrey"
 	}
