@@ -1,7 +1,7 @@
 package utils
 
-func GetColour(language string) string {
-	switch language {
+func GetColour(name string) string {
+	switch name {
 	case "TypeScript":
 		return "#0099ff"
 	case "JavaScript":

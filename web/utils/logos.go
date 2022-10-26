@@ -1,0 +1,84 @@
+package utils
+
+func GetLogo(name string) string {
+	switch name {
+	case "TypeScript":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
+	case "JavaScript":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+	case "C":
+		return "ttps://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+	case "C#":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg"
+	case "JSON":
+		return ""
+	case "PHP":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg"
+	case "Python":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+	case "HTML":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"
+	case "Docker":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
+	case "SQL":
+		return ""
+	case "Java":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg"
+	case "Dart":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg"
+	case "SCSS":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg"
+	case "CSS":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg"
+	case "Rust":
+		return "https://raw.githubusercontent.com/zrwaite/zrwaite/main/ferris.png"
+	case "Racket":
+		return ""
+	case "Markdown":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/markdown/markdown-original.svg"
+	case "C++":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+	case "VHDL":
+		return ""
+	case "Go":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg"
+	case "Swift":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
+	case "GraphQL":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/graphql/graphql-plain.svg"
+	case "Svelte":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/svelte/svelte-original.svg"
+	case "Ruby":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/ruby/ruby-original.svg"
+	case "Scala":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/scala/scala-original.svg"
+	case "Bash":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/bash/bash-original.svg"
+	case "Arduino":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/arduino/arduino-original.svg"
+	case "Assembly":
+		return ""
+	case "Groovy":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/groovy/groovy-original.svg"
+	case "Kotlin":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/kotlin/kotlin-original.svg"
+	case "VS Code":
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
+	case "IntelliJ":
+		return ""
+	case "PhpStorm":
+		return ""
+	case "WebStorm":
+		return ""
+	case "CLion":
+		return ""
+	case "Xcode":
+		return ""
+	case "PyCharm":
+		return ""
+	case "RubyMine":
+		return ""
+	default:
+		return ""
+	}
+}
