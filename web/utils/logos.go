@@ -7,7 +7,7 @@ func GetLogo(name string) string {
 	case "JavaScript":
 		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
 	case "C":
-		return "ttps://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
 	case "C#":
 		return "https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg"
 	case "JSON":

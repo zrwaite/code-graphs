@@ -5,9 +5,10 @@ import (
 
 	svg "github.com/ajstarks/svgo"
 	"github.com/zrwaite/github-graphs/models"
+	"github.com/zrwaite/github-graphs/utils"
 )
 
-func CreateSlice(s *svg.SVG, start float64, size float64, colour string, addUsername bool, username string) {
+func CreateSlice(s *svg.SVG, start float64, size float64, colour string, addLogos bool, language string, addUsername bool, username string) {
 	var radius float64 = 400
 	middleX := 480
 	middleY := 460
@@ -22,18 +23,27 @@ func CreateSlice(s *svg.SVG, start float64, size float64, colour string, addUser
 	}
 	end := ((start+size)/100)*2*math.Pi - math.Pi/2
 	start = (start/100)*2*math.Pi - math.Pi/2
+	mid := (start + end) / 2
 
 	startX := middleX + int(math.Cos(start)*radius)
 	startY := middleY + int(math.Sin(start)*radius)
 
 	endX := middleX + int(math.Cos(end)*radius)
 	endY := middleY + int(math.Sin(end)*radius)
+
+	midX := middleX + int(math.Cos(mid)*radius)
+	midY := middleY + int(math.Sin(mid)*radius)
+
 	s.Arc(startX, startY, int(radius), int(radius), 0, false, true, endX, endY, "fill:"+colour)
 	s.Polygon([]int{middleX, startX, endX}, []int{middleY, startY, endY}, "fill:"+colour)
 	s.Line(startX, startY, endX, endY, "stroke:"+colour+";stroke-width:1")
+	if addLogos {
+		logo := utils.GetLogo(language)
+		s.Image(midX-20, midY-20, 40, 40, logo, "")
+	}
 }
 
-func CreatePiGraph(s *svg.SVG, languages models.Languages, addUsername bool, username string) {
+func CreatePiGraph(s *svg.SVG, languages models.Languages, addLogos, addUsername bool, username string) {
 	totalAngle := 0.0
 	sliceLanguages := append(languages.Languages, models.Language{
 		Name:         "Other",
@@ -53,7 +63,7 @@ func CreatePiGraph(s *svg.SVG, languages models.Languages, addUsername bool, use
 			}
 		}
 		if language.Percent > 0.2 {
-			CreateSlice(s, totalAngle, language.Percent, language.Colour, addUsername, username)
+			CreateSlice(s, totalAngle, language.Percent, language.Colour, addLogos, language.Name, addUsername, username)
 			totalAngle += language.Percent
 		}
 	}

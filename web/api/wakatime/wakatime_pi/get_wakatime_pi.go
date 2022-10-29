@@ -26,6 +26,7 @@ func GetWakatimePiSVG(c *gin.Context) {
 	ignoreString := c.Query("ignore")
 	removeDefaultIgnore := c.Query("removeDefaultIgnore")
 	addUsername := c.Query("addUsername") == "true"
+	addLogos := c.Query("addLogos") == "true"
 
 	ignoreLanguages := []string{}
 	if ignoreString != "" {
@@ -42,7 +43,7 @@ func GetWakatimePiSVG(c *gin.Context) {
 	s := svg.New(c.Writer)
 	s.Start(1500, 917)
 	s.Roundrect(0, 0, 1500, 917, 20, 20, "fill:black;stroke:white;stroke-width:6")
-	CreatePiGraph(s, languages, addUsername, username)
-	CreateLegend(s, languages)
+	CreatePiGraph(s, languages, addLogos, addUsername, username)
+	CreateLegend(s, languages, addLogos)
 	s.End()
 }

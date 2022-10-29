@@ -14,9 +14,9 @@ import (
 var Cache *redis.Client
 
 func ConnectToRedis() {
-	addr := "codegraphs_redis:6379"
+	addr := "codegraphs_redis:8002"
 	if config.CONFIG.Dev {
-		addr = "localhost:6379"
+		addr = "localhost:8002"
 	}
 	Cache = redis.NewClient(&redis.Options{
 		Addr:     addr,
