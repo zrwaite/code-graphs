@@ -31,15 +31,16 @@ func CreateSlice(s *svg.SVG, start float64, size float64, colour string, addLogo
 	endX := middleX + int(math.Cos(end)*radius)
 	endY := middleY + int(math.Sin(end)*radius)
 
-	midX := middleX + int(math.Cos(mid)*radius)
-	midY := middleY + int(math.Sin(mid)*radius)
+	midX := middleX + int(math.Cos(mid)*radius*0.8)
+	midY := middleY + int(math.Sin(mid)*radius*0.8)
 
 	s.Arc(startX, startY, int(radius), int(radius), 0, false, true, endX, endY, "fill:"+colour)
 	s.Polygon([]int{middleX, startX, endX}, []int{middleY, startY, endY}, "fill:"+colour)
 	s.Line(startX, startY, endX, endY, "stroke:"+colour+";stroke-width:1")
-	if addLogos {
+	if addLogos && size > 1 {
 		logo := utils.GetLogo(language)
-		s.Image(midX-20, midY-20, 40, 40, logo, "")
+		logoSize := int(math.Min(math.Max(40, math.Sqrt(size)*30), 120))
+		s.Image(midX-logoSize/2, midY-logoSize/2, logoSize, logoSize, logo, "")
 	}
 }
 
