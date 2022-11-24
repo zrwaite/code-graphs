@@ -5,6 +5,7 @@ import "github.com/gin-gonic/gin"
 func GetStyleSheet() string {
 	return `<style>
 	.ContributionCalendar-day {outline: rgba(255, 255, 255, 0.05);}
+	.ContributionCalendar-day[data-level="0"] {fill: #1b1f23;}
 	.ContributionCalendar-day[data-level="1"] {fill: #0e4429;}
 	.ContributionCalendar-day[data-level="2"] {fill: #006d32;}
 	.ContributionCalendar-day[data-level="3"] {fill: #26a641;}
