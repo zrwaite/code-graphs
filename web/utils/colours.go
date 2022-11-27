@@ -4,6 +4,10 @@ func GetColour(name string) string {
 	switch name {
 	case "TypeScript":
 		return "#0099ff"
+	case "tsconfig":
+		return "#0099ff"
+	case "Solidity":
+		return "#dddddd"
 	case "JavaScript":
 		return "#ecec13"
 	case "C":
@@ -19,6 +23,8 @@ func GetColour(name string) string {
 	case "HTML":
 		return "#ff471a"
 	case "Docker":
+		return "#1aa3ff"
+	case "Dockerfile":
 		return "#1aa3ff"
 	case "SQL":
 		return "#e6b800"
