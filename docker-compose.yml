@@ -7,16 +7,16 @@ services:
         ports:
             - '8001:8001'
         depends_on:
-            - "redis2"
-    redis2:
+            - "redis"
+    redis:
         build: 'redis'
-        image: 'zrwaite/redis2:1.0'
+        image: 'zrwaite/codegraphs_redis:4.0'
         restart: 'always'
         ports:
             - '6380:6379'
         command: "redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}"
         volumes: 
-            - redis2:/data
+            - redis:/data
 volumes:
-    redis2:
+    redis:
         driver: local
