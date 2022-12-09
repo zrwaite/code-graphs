@@ -12,6 +12,7 @@ import (
 	"github.com/zrwaite/github-graphs/api/wakatime/wakatime_top_stats"
 	"github.com/zrwaite/github-graphs/client/controllers"
 	"github.com/zrwaite/github-graphs/config"
+	"github.com/zrwaite/github-graphs/cron"
 	"github.com/zrwaite/github-graphs/db"
 	"github.com/zrwaite/github-graphs/db/cache_service"
 )
@@ -32,7 +33,7 @@ func setupRouter() *gin.Engine {
 	db.ConnectToMongoDB()
 	db.ConnectToRedis()
 	// db.InitializeDatabase()
-	// go cron.RunCronJobs()
+	go cron.RunCronJobs()
 	// mail.StartupMessage()
 
 	r := gin.Default()

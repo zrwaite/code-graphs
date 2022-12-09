@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -14,7 +13,7 @@ import (
 	"github.com/zrwaite/github-graphs/utils/mail"
 )
 
-func RefreshWakatimeToken(refreshToken string) (accessToken string, err error) {
+func RefreshWakatimeToken(refreshToken string, name string) (response *models.WakaTimeTokenResponse, err error) {
 	form := url.Values{}
 	form.Add("refresh_token", refreshToken)
 	form.Add("grant_type", "refresh_token")
@@ -33,22 +32,39 @@ func RefreshWakatimeToken(refreshToken string) (accessToken string, err error) {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		mail.ErrorMessage("Failed to refresh wakatime token")
-		return "", err
+		mail.ErrorMessage("Failed to refresh wakatime token for " + name + " - client.Do")
+		return nil, err
 	}
 	defer resp.Body.Close()
+	data, _ := ioutil.ReadAll(resp.Body)
 	if resp.StatusCode != 200 {
 		fmt.Println("Error refreshing token: " + resp.Status)
-		data, _ := ioutil.ReadAll(resp.Body)
 		fmt.Println(string(data))
 		log.Fatal(resp)
 	}
 	var responseData models.WakaTimeTokenResponse
-	err = json.NewDecoder(resp.Body).Decode(&responseData)
-	if err != nil {
-		mail.ErrorMessage("Failed to refresh wakatime token")
-		return "", err
+
+	// Split the input string by "&"
+	pairs := strings.Split(string(data), "&")
+
+	// Loop through the pairs
+	for _, pair := range pairs {
+		// Split each pair by "="
+		fields := strings.Split(pair, "=")
+
+		// Check the first field and set the appropriate value in the Tokens struct
+		switch fields[0] {
+		case "access_token":
+			responseData.AccessToken = fields[1]
+		case "refresh_token":
+			responseData.RefreshToken = fields[1]
+		}
 	}
 
-	return responseData.AccessToken, nil
+	if responseData.AccessToken == "" || responseData.RefreshToken == "" {
+		mail.ErrorMessage("Failed to refresh wakatime token for " + name + " - ")
+		return nil, err
+	}
+
+	return &responseData, nil
 }

@@ -22,12 +22,13 @@ func getCodeData(user *models.User) (models.WakatimeData, error) {
 	var data models.WakatimeData
 	if resp.StatusCode == 401 {
 		fmt.Println("Refreshing token - " + time.Now().Format("2006-01-02 15:04:05"))
-		accessToken, err := auth.RefreshWakatimeToken(user.RefreshToken)
+		responseData, err := auth.RefreshWakatimeToken(user.RefreshToken, user.Username)
 		if err != nil {
 			fmt.Println(err)
 			return data, err
 		}
-		user.AccessToken = accessToken
+		user.AccessToken = responseData.AccessToken
+		user.RefreshToken = responseData.RefreshToken
 		err = db_service.UpdateUser(user)
 		if err != nil {
 			mail.ErrorMessage(fmt.Sprintf("Failed to update user: \n\n%+v\n", user))

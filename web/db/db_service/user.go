@@ -59,7 +59,8 @@ func UpdateUser(user *models.User) error {
 		"username": user.Username,
 	}, bson.M{
 		"$set": bson.M{
-			"access_token": user.AccessToken,
+			"access_token":  user.AccessToken,
+			"refresh_token": user.RefreshToken,
 		},
 	})
 	if err != nil {
