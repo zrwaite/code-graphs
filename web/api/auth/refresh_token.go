@@ -43,25 +43,9 @@ func RefreshWakatimeToken(refreshToken string, name string) (response *models.Wa
 		log.Fatal(resp)
 	}
 	var responseData models.WakaTimeTokenResponse
+	err = responseData.ParseFromString(string(data))
 
-	// Split the input string by "&"
-	pairs := strings.Split(string(data), "&")
-
-	// Loop through the pairs
-	for _, pair := range pairs {
-		// Split each pair by "="
-		fields := strings.Split(pair, "=")
-
-		// Check the first field and set the appropriate value in the Tokens struct
-		switch fields[0] {
-		case "access_token":
-			responseData.AccessToken = fields[1]
-		case "refresh_token":
-			responseData.RefreshToken = fields[1]
-		}
-	}
-
-	if responseData.AccessToken == "" || responseData.RefreshToken == "" {
+	if err != nil {
 		mail.ErrorMessage("Failed to refresh wakatime token for " + name + " - ")
 		return nil, err
 	}

@@ -1,5 +1,10 @@
 package models
 
+import (
+	"errors"
+	"strings"
+)
+
 type TimeData struct {
 	Name         string  `json:"name"`
 	Percent      float64 `json:"percent"`
@@ -37,6 +42,32 @@ type WakatimeData struct {
 type WakaTimeTokenResponse struct {
 	AccessToken  string `json:"access_token"`
 	RefreshToken string `json:"refresh_token"`
+}
+
+// function on WakaTimeTokenResponse called parseFromString
+func (w *WakaTimeTokenResponse) ParseFromString(data string) (err error) {
+	// Split the input string by "&"
+	pairs := strings.Split(data, "&")
+
+	// Loop through the pairs
+	for _, pair := range pairs {
+		// Split each pair by "="
+		fields := strings.Split(pair, "=")
+
+		// Check the first field and set the appropriate value in the Tokens struct
+		switch fields[0] {
+		case "access_token":
+			w.AccessToken = fields[1]
+		case "refresh_token":
+			w.RefreshToken = fields[1]
+		}
+	}
+
+	if w.AccessToken == "" || w.RefreshToken == "" {
+		// mail.ErrorMessage("Failed to refresh wakatime token for " + name + " - ")
+		return errors.New("failed to find access_token and refresh_token in response")
+	}
+	return nil
 }
 
 type WakaTimeUserResponse struct {

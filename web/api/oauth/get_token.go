@@ -1,7 +1,6 @@
 package oauth
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -40,16 +39,16 @@ func GetWakatimeToken(code string) (*models.WakaTimeTokenResponse, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	data, _ := io.ReadAll(resp.Body)
 	if resp.StatusCode != 200 {
 		fmt.Println("Error getting wakatime token: " + resp.Status)
-		data, _ := io.ReadAll(resp.Body)
 		fmt.Println(string(data))
 	}
-	var responseData *models.WakaTimeTokenResponse
-	err = json.NewDecoder(resp.Body).Decode(&responseData)
+	var responseData models.WakaTimeTokenResponse
+	err = responseData.ParseFromString(string(data))
 	if err != nil {
 		mail.ErrorMessage("Failed to get decode token")
 		return nil, err
 	}
-	return responseData, nil
+	return &responseData, nil
 }
