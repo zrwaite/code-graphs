@@ -6,8 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/zrwaite/github-graphs/api/github/github_languages"
+	"github.com/zrwaite/github-graphs/api/github/streak"
 	"github.com/zrwaite/github-graphs/api/oauth"
-	"github.com/zrwaite/github-graphs/api/streak"
 	"github.com/zrwaite/github-graphs/api/wakatime/wakatime_pi"
 	"github.com/zrwaite/github-graphs/api/wakatime/wakatime_top_stats"
 	"github.com/zrwaite/github-graphs/client/controllers"
@@ -48,6 +49,7 @@ func setupRouter() *gin.Engine {
 	r.Static("/styles", "./client/static/css")
 	r.Static("/fonts", "./client/static/fonts")
 	r.GET("/api/streak/:username", streak.GetStreakSVG)
+	r.GET("/api/github/languages/:username", github_languages.GetGithubLanguagesSVG)
 	r.GET("/api/wakatime/:username", wakatime_pi.GetWakatimePiSVG)
 	r.GET("/api/wakatime_stats/:username", wakatime_top_stats.GetWakatimeTopStatsSVG)
 	r.GET("/oauth", oauth.OAuthHandler)
