@@ -1,6 +1,8 @@
 package github_languages
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 func GetGithubLanguagesSVG(c *gin.Context) {
 	username := c.Params.ByName("username")

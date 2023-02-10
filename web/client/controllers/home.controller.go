@@ -31,10 +31,11 @@ func HomeController(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "index.go.tmpl", gin.H{
-		"github_streak_graph_link": prefix + "/api/streak/zrwaite",
-		"wakatime_pi_graph_link":   wakatime_pi_graph_link,
-		"authorized":               authorized,
-		"auth_href":                "https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=" + prefix + "/oauth",
-		"public_graph_links":       public_graph_links,
+		"github_streak_graph_link":    prefix + "/api/streak/zrwaite",
+		"github_languages_graph_link": prefix + "/api/github/languages/zrwaite?hide=html,css",
+		"wakatime_pi_graph_link":      wakatime_pi_graph_link,
+		"authorized":                  authorized,
+		"auth_href":                   "https://wakatime.com/oauth/authorize?client_id=YrKmoBVz3M8lDJZmTFaFWDKz&response_type=code&scope=read_stats,read_logged_time,email&redirect_uri=" + prefix + "/oauth",
+		"public_graph_links":          public_graph_links,
 	})
 }

@@ -9,13 +9,21 @@
 
 		<main>
 			<section class="openApi">
-				<h2>Open API:</h2>
+				<h2>Custom Image Layer API:</h2>
+				<p>These graphs provide an abstracted layer on top of existing svg APIs</p>
 				<hr/>
 				<h3>Static Github Streak Graph</h3>
 				<h4><code>https://graphs.insomnizac.xyz/api/streak/:username</code></h4>
 				<h4>Example: <code>https://graphs.insomnizac.xyz/api/streak/zrwaite</code></h4>
 				<a href={{ .github_streak_graph_link }}>
 					<img class="githubStreakGraph" src={{ .github_streak_graph_link }} alt="Github Streak Graph" />
+				</a>
+				<hr/>
+				<h3>Github Languages Graph</h3>
+				<h4><code>http://graphs.insomnizac.xyz/api/github/languages/:username?hide=css,etc</code></h4>
+				<h4>Example: <code>http://graphs.insomnizac.xyz/api/github/languages/zrwaite?hide=css,html</code></h4>
+				<a href={{ .github_languages_graph_link }}>
+					<img class="githubLanguagesGraph" src={{ .github_languages_graph_link }} alt="Github Languages Graph" />
 				</a>
 			</section>
 
