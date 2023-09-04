@@ -21,7 +21,7 @@ func initDirectory() {
 		panic(err)
 	}
 	CONFIG.Directory = filepath.Dir(ex) + "/"
-	CONFIG.AppURI = "https://graphs.insomnizac.xyz"
+	CONFIG.AppURI = "https://graphs.insomnizac.com"
 	if strings.Contains(ex, "var/folders") {
 		fmt.Println("dev mode")
 		CONFIG.Dev = true

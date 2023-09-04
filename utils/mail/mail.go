@@ -24,7 +24,7 @@ func SendMessage(toEmail string, toName string, subject string, content string) 
 }
 
 func ErrorMessage(content string) (success bool) {
-	subject := "Error on graphs.insomnizac.xyz v5.2"
+	subject := "Error on graphs.insomnizac.com v5.2"
 	return SendMessage(config.CONFIG.ContactEmail, "Zac Waite", subject, content)
 }
 

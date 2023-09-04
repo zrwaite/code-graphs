@@ -13,15 +13,15 @@
 				<p>These graphs provide an abstracted layer on top of existing svg APIs</p>
 				<hr/>
 				<h3>Static Github Streak Graph</h3>
-				<h4><code>https://graphs.insomnizac.xyz/api/streak/:username</code></h4>
-				<h4>Example: <code>https://graphs.insomnizac.xyz/api/streak/zrwaite</code></h4>
+				<h4><code>https://graphs.insomnizac.com/api/streak/:username</code></h4>
+				<h4>Example: <code>https://graphs.insomnizac.com/api/streak/zrwaite</code></h4>
 				<a href={{ .github_streak_graph_link }}>
 					<img class="githubStreakGraph" src={{ .github_streak_graph_link }} alt="Github Streak Graph" />
 				</a>
 				<hr/>
 				<h3>Github Languages Graph</h3>
-				<h4><code>http://graphs.insomnizac.xyz/api/github/languages/:username?hide=css,etc</code></h4>
-				<h4>Example: <code>http://graphs.insomnizac.xyz/api/github/languages/zrwaite?hide=css,html</code></h4>
+				<h4><code>http://graphs.insomnizac.com/api/github/languages/:username?hide=css,etc</code></h4>
+				<h4>Example: <code>http://graphs.insomnizac.com/api/github/languages/zrwaite?hide=css,html</code></h4>
 				<a href={{ .github_languages_graph_link }}>
 					<img class="githubLanguagesGraph" src={{ .github_languages_graph_link }} alt="Github Languages Graph" />
 				</a>
@@ -50,8 +50,8 @@
 						</a>
 					</div>
 				{{ else }}
-					<h4><code>https://graphs.insomnizac.xyz/api/wakatime/:username</code></h4>
-					<h4>Example: <code>https://graphs.insomnizac.xyz/api/wakatime/Insomnizac</code></h4>
+					<h4><code>https://graphs.insomnizac.com/api/wakatime/:username</code></h4>
+					<h4>Example: <code>https://graphs.insomnizac.com/api/wakatime/Insomnizac</code></h4>
 					{{ range .public_graph_links }}
 						<div class="linkedImage">
 							<a href={{ . }}>

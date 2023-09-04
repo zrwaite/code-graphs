@@ -57,7 +57,7 @@ func OAuthHandler(c *gin.Context) {
 		`
 	} else {
 		welcome_message = `<h1>Welcome to CodeGraphs!</h1>
-		<h3>You can view your graphs <a href="https://graphs.insomnizac.xyz/` + user.Username + `">here</a></h3>
+		<h3>You can view your graphs <a href="https://graphs.insomnizac.com/` + user.Username + `">here</a></h3>
 		
 		<p>Reach out to Zac for account verification</p>
 		`

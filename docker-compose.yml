@@ -3,6 +3,7 @@ services:
     web:
         env_file: './.env'
         build: .
-        image: 'zrwaite/codegraphs_web:5.0.1'
+        image: 'zrwaite/codegraphs_web:5.0.2'
+        network_mode: host
         ports:
             - '8001:8001'

@@ -38,7 +38,7 @@ func getCodeData(user *models.User) (models.WakatimeData, error) {
 		return getCodeData(user)
 	} else if resp.StatusCode != 200 && resp.StatusCode != 201 && resp.StatusCode != 202 {
 		fmt.Println("Error getting data: " + time.Now().Format("2006-01-02 15:04:05"))
-		mail.ErrorMessage(fmt.Sprintf("Failed to get code data: \n\n\n%+v\n\n\n<img src=\"https://graphs.insomnizac.xyz/api/wakatime/pi\" />", resp))
+		mail.ErrorMessage(fmt.Sprintf("Failed to get code data: \n\n\n%+v\n\n\n<img src=\"https://graphs.insomnizac.com/api/wakatime/pi\" />", resp))
 		return data, errors.New("failed to get code data")
 	}
 	if resp.StatusCode == 202 {
