@@ -1,4 +1,4 @@
 # Development:
 
 - `./redis.sh`
-- `npm run dev`
+- `go run main.go`
