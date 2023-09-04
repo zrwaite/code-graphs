@@ -17,9 +17,7 @@ jobs:
             - name: populate .env file
               run: |
                   touch .env
-                  echo "${{ secrets.env_file }}" >> .env
-                  touch web/.env
-                  echo "${{ secrets.env_file }}" >> web/.env
+                  echo "${{ secrets.env_file }}" > .env
             - name: docker login
               env:
                   DOCKER_USER: ${{secrets.DOCKER_USER}}

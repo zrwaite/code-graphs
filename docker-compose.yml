@@ -2,21 +2,7 @@ version: '3'
 services:
     web:
         env_file: './.env'
-        build: web
+        build: .
         image: 'zrwaite/codegraphs_web:4.0.0'
         ports:
             - '8001:8001'
-        # depends_on:
-        #     - "redis"
-    # redis:
-    #     build: 'redis'
-    #     image: 'zrwaite/codegraphs_redis:4.0'
-    #     restart: 'always'
-    #     ports:
-    #         - '6379:6379'
-    #     command: "redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}"
-    #     volumes: 
-    #         - redis:/data
-volumes:
-    redis:
-        driver: local
